@@ -49,8 +49,10 @@ class Nav extends Component {
     render() {
         let showMenu = this.state.showMenu
         let opacity = showMenu ? '1' : '0'
+        let display = showMenu ? 'block' : 'none'
         let style = {
-            opacity
+            opacity,
+            display
         }
         let navBackgroundStyle = {
             backgroundColor : this.state.backgroundColor,

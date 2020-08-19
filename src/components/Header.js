@@ -8,8 +8,12 @@ class Footer extends Component {
     }
     
     render() {
+        let height = this.props.height || 500
+        let style = {
+            height: height + 'px'
+        }
         return (
-            <div className="header">
+            <div className="header" style={style}>
                 {/* <Nav></Nav> */}
                 <div className="fade"></div>
                 <div className="header-content">
