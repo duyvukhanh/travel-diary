@@ -1,0 +1,68 @@
+.user-page-header {
+    padding-top: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.user-img {
+    margin : 20px 0;
+    height: 100px;
+    width: 100px;
+}
+
+.user-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px ;
+}
+
+.user-name {
+    margin : 10px 0;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.user-bio {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 1px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info span {
+    padding-top: 5px;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+}
+
+.user-info span:hover {
+    opacity: 1;
+}
+
+.user-info span img {
+    height: 15px;
+    width: 15px;
+    margin-right: 15px;
+}
+
+.spread-line {
+    height: 50px;
+    width: 120px;
+    border-bottom: 2px solid #dbdbdb;
+}

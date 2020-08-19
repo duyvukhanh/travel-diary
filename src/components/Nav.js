@@ -7,15 +7,43 @@ class Nav extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            showMenu : false
+            showMenu : false,
+            backgroundColor : "",
+            height : "100px",
+            textColor : "#fff",
         }
     }
     
-    async showMenu() {
+    showMenu() {
         this.setState({
             showMenu : !this.state.showMenu
         })
-        
+    }
+
+    componentWillMount() {
+        if (this.props.bg == "white") {
+            this.setState({
+                backgroundColor : "#fff",
+                height : "100px",
+                textColor : "#343a40"
+            })
+        }
+    }
+
+    componentDidMount() {
+        window.onscroll = () => {
+            let scrollY = window.pageYOffset
+            let backgroundColor = scrollY > 0 ? "#fff" : ""
+            let height = scrollY > 0 ? "70px" : ""
+            let textColor = scrollY > 0 ? "#343a40" : "#fff"
+            if (this.props.bg != "white") {
+                this.setState({
+                    backgroundColor,
+                    height,
+                    textColor
+                })
+            }
+        }
     }
 
     render() {
@@ -24,17 +52,25 @@ class Nav extends Component {
         let style = {
             opacity
         }
+        let navBackgroundStyle = {
+            backgroundColor : this.state.backgroundColor,
+            height : this.state.height
+        }
+
+        let textColorStyle = {
+            color : this.state.textColor
+        }
         return (
-            <nav className="nav">
-                <div className="nav-home-item">
-                    <Link to="/" className="nav-home-item">Travel Diary</Link>
+            <nav className="nav" style={navBackgroundStyle}>
+                <div className="nav-home-item" >
+                    <Link to="/" className="nav-home-item" style={textColorStyle}>Travel Diary</Link>
                 </div>
                 <div className="nav-group-items">
-                    <Link to="/" className="nav-item nav-active">Home</Link>
-                    <Link to="/" className="nav-item">Profile</Link>
-                    <Link to="/gallery" className="nav-item">Gallery</Link>
-                    <Link to="/" className="nav-item">About</Link>
-                    <Link to="/" className="nav-item">login</Link>
+                    <Link to="/" className="nav-item nav-active" style={textColorStyle}>Home</Link>
+                    <Link to="/" className="nav-item" style={textColorStyle}>Profile</Link>
+                    <Link to="/gallery" className="nav-item" style={textColorStyle}>Gallery</Link>
+                    <Link to="/" className="nav-item" style={textColorStyle}>About</Link>
+                    <Link to="/" className="nav-item" style={textColorStyle}>login</Link>
                     {/* <Link to="/" className="nav-item">Đăng xuất</Link> */}
                 </div>
                 <div className="nav-group-items-sm" onClick={() => this.showMenu()}>
@@ -42,7 +78,6 @@ class Nav extends Component {
                         <svg height="30" viewBox="0 -53 384 384" width="30" xmlns="http://www.w3.org/2000/svg"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
                     </Link>
                 </div>
-                
                 <div className="nav-group-items-sm-extend" style={style}>
                     <Link to="/" className="nav-item-extend">Home</Link>
                     <Link to="/" className="nav-item-extend">Profile</Link>
@@ -52,7 +87,6 @@ class Nav extends Component {
                     <button className="nav-item-extend-btn signup-btn-ext">Sign up</button>
 
                 </div>
-                
             </nav>
         )
     }

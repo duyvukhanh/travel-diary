@@ -10,7 +10,7 @@ class Footer extends Component {
     render() {
         return (
             <div className="header">
-                <Nav></Nav>
+                {/* <Nav></Nav> */}
                 <div className="fade"></div>
                 <div className="header-content">
                     {this.props.children}

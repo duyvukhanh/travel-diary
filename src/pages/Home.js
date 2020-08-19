@@ -10,7 +10,7 @@ class Home extends Component {
     
     render() {
         return (
-            <MainLayout className="home-page" headerContent="Save your memories">
+            <MainLayout className="home-page" header="true" headerContent="Save your memories">
                 <VNMap />
                 <PlaceInfo />
             </MainLayout>

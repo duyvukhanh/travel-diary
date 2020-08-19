@@ -1,5 +1,6 @@
 .nav {
-    position: relative;
+    position: fixed;
+    width: 100%;
     z-index: 1;
     display: flex;
     align-items: center;
@@ -7,6 +8,7 @@
     justify-content: space-between;
     height: 100px;
     /* background-color: crimson; */
+    transition: height 0.5s, background-color 0.5s;
 }
 
 .nav-group-items .nav-item {
@@ -15,7 +17,7 @@
 }
 
 .nav-item:hover {
-    color: #16a085;
+    color: #16a085 !important;
 }
 
 .nav-group-items .nav-item:last-child {
