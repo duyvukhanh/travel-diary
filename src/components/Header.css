@@ -1,0 +1,55 @@
+.header {
+    position: relative;
+    height: 500px;
+    background-image: url('https://i.pinimg.com/originals/f4/fe/ce/f4fece4d5d111083e1c65ffbead7a92c.jpg');
+    /* background-image: linear-gradient(to top, transparent, #000), url("https://i.pinimg.com/originals/f4/fe/ce/f4fece4d5d111083e1c65ffbead7a92c.jpg"); */
+    background-position: center;
+    background-size: cover;
+}
+
+.header .fade {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.header .header-content {
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    top: 40%;
+    font-family: proxima-nova,Lato,"Lucida Sans Unicode","Lucida Grande",sans-serif;
+}
+
+.header-content button {
+    height: 40px;
+    width: 200px;
+    margin-top: 20px;
+    background: none;
+    color: #fff;
+    border: 2px solid #fff;
+    transition: opacity 0.5s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    outline: none;
+    cursor: pointer;
+    opacity: 0.6;
+    font-weight: 800;
+}
+
+.header-content button:hover {
+    opacity: 1;
+}

@@ -1,0 +1,50 @@
+.place-info {
+    margin-top: 100px;
+    /* min-width: 500px; */
+    background-color: #fff;
+    padding: 20px;
+    border : 1px solid #dbdbdb;
+    height: fit-content;
+}
+
+.place-title {
+    text-align: center;
+    padding: 10px;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color : #16a085;
+}
+
+.collection-title {
+    padding: 20px 20px 0 20px;
+    font-size: 25px;
+    font-family: 'Nunito', sans-serif;
+
+}
+
+.place-info p {
+    text-indent: 50px;
+    text-align: justify;
+    line-height: 1.5rem;
+}
+
+@media(max-width: 768px) {
+    .place-info p  {
+        padding: 0 10px;
+    }
+}
+
+.place-info ul li {
+    font-size: 20px;
+    padding-bottom: 7px;
+    margin-left: 10px;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+}
+
+.place-info ul li:hover {
+    color: #16a085;
+}
