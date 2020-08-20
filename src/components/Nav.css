@@ -7,7 +7,6 @@
     padding: 0 40px;
     justify-content: space-between;
     height: 100px;
-    /* background-color: crimson; */
     transition: height 0.5s, background-color 0.5s;
 }
 

@@ -10,7 +10,8 @@ users = [
         userFacebook : "https://www.facebook.com/vukhanh.duy.921",
         userInstagram : "https://www.instagram.com/khanhduy2906/",
         bio : "Hiện đang thất nghiệp",
-        gallery : ["album01","album02"]
+        gallery : ["album01","album02"],
+        voteFor = ["album03","album04"]
     }
 ]
 

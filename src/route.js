@@ -6,6 +6,8 @@ import AlbumPage from './pages/Album'
 import LoginPage from './pages/Login'
 import RegisterPage from './pages/Register'
 import AboutPage from './pages/About'
+import ProfilePage from './pages/Profile'
+
 
 
 
@@ -35,6 +37,9 @@ class Routes extends Component {
                 </Route>
                 <Route path="/about">
                     <AboutPage/>
+                </Route>
+                <Route path="/profile">
+                    <ProfilePage/>
                 </Route>
             </Switch>
         )
