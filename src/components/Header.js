@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Nav from './Nav'
+import {Link} from 'react-router-dom'
 import './Header.css'
 
 class Footer extends Component {
@@ -14,11 +14,11 @@ class Footer extends Component {
         }
         return (
             <div className="header" style={style}>
-                {/* <Nav></Nav> */}
+            
                 <div className="fade"></div>
                 <div className="header-content">
                     {this.props.children}
-                    <button>sign up</button>
+                    <Link to="/register" id="signUpBtn">sign up</Link>
                 </div>
             </div>
         )

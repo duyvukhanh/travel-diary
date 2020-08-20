@@ -1,0 +1,77 @@
+.register-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form {
+    width: 500px;
+    height: 500px;
+}
+
+#registerForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form .title {
+    text-decoration: none;
+    color: #1d1d1d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    font-family: 'Nunito', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 25px;
+    font-weight: 600;
+    user-select: none;
+}
+
+.register-form input {
+    height: 60px;
+    margin : 0 40px 30px 40px;
+    padding-left: 20px;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    border: 1px solid #16a085;
+}
+
+.register-form button {
+    margin : auto;
+    width: 130px;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+    background-color: #16a085;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.to-login {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.to-login div:first-child {
+    margin-right: 7px;
+    user-select: none;
+}
+
+.to-login div:last-child {
+    cursor: pointer;
+    color: #16a085;
+}
+
+.to-login div:last-child:hover {
+    text-decoration: underline;
+}

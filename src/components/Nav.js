@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import './Nav.css'
-// import menu from '../icons/menu.svg';
+import menu from '../icons/menu.svg';
 
 class Nav extends Component {
     constructor(props) {
@@ -69,22 +69,22 @@ class Nav extends Component {
                 </div>
                 <div className="nav-group-items">
                     <Link to="/" className="nav-item nav-active" style={textColorStyle}>Home</Link>
-                    <Link to="/" className="nav-item" style={textColorStyle}>Profile</Link>
                     <Link to="/gallery" className="nav-item" style={textColorStyle}>Gallery</Link>
-                    <Link to="/" className="nav-item" style={textColorStyle}>About</Link>
-                    <Link to="/" className="nav-item" style={textColorStyle}>login</Link>
+                    <Link to="/profile" className="nav-item" style={textColorStyle}>Profile</Link>
+                    <Link to="/about" className="nav-item" style={textColorStyle}>About</Link>
+                    <Link to="/login" className="nav-item" style={textColorStyle}>login</Link>
                     {/* <Link to="/" className="nav-item">Đăng xuất</Link> */}
                 </div>
                 <div className="nav-group-items-sm" onClick={() => this.showMenu()}>
-                    <Link to="/#" className="nav-item">
-                        <svg height="30" viewBox="0 -53 384 384" width="30" xmlns="http://www.w3.org/2000/svg"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
-                    </Link>
+                    <img src={menu}></img>
+                        {/* <svg height="30" viewBox="0 -53 384 384" width="30" xmlns="http://www.w3.org/2000/svg"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg> */}
+                    
                 </div>
                 <div className="nav-group-items-sm-extend" style={style}>
                     <Link to="/" className="nav-item-extend">Home</Link>
-                    <Link to="/" className="nav-item-extend">Profile</Link>
                     <Link to="/gallery" className="nav-item-extend">Gallery</Link>
-                    <Link to="/" className="nav-item-extend">About</Link>
+                    <Link to="/profile" className="nav-item-extend">Profile</Link>
+                    <Link to="/about" className="nav-item-extend">About</Link>
                     <button className="nav-item-extend-btn login-btn-ext">Login</button>
                     <button className="nav-item-extend-btn signup-btn-ext">Sign up</button>
 

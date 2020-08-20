@@ -1,0 +1,77 @@
+.login-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    width: 500px;
+    height: 500px;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form .title {
+    text-decoration: none;
+    color: #1d1d1d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    font-family: 'Nunito', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 25px;
+    font-weight: 600;
+    user-select: none;
+}
+
+.login-form input {
+    height: 60px;
+    margin : 0 40px 30px 40px;
+    padding-left: 20px;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    border: 1px solid #16a085;
+}
+
+.login-form button {
+    margin : auto;
+    width: 130px;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+    background-color: #16a085;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.forgot-pw {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.forgot-pw div:first-child {
+    margin-right: 7px;
+    user-select: none;
+}
+
+.forgot-pw div:last-child {
+    cursor: pointer;
+    color: #16a085;
+}
+
+.forgot-pw div:last-child:hover {
+    text-decoration: underline;
+}

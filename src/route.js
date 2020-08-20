@@ -3,6 +3,10 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from './pages/Home'
 import GalleryPage from './pages/Gallery'
 import AlbumPage from './pages/Album'
+import LoginPage from './pages/Login'
+import RegisterPage from './pages/Register'
+import AboutPage from './pages/About'
+
 
 
 
@@ -22,6 +26,15 @@ class Routes extends Component {
                 </Route>
                 <Route path="/album">
                     <AlbumPage/>
+                </Route>
+                <Route path="/login">
+                    <LoginPage/>
+                </Route>
+                <Route path="/register">
+                    <RegisterPage/>
+                </Route>
+                <Route path="/about">
+                    <AboutPage/>
                 </Route>
             </Switch>
         )
