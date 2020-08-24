@@ -1,6 +1,74 @@
 .album-page-content {
     /* background-color: red; */
-    padding-top: 100px;
+    padding-top: 0;
+}
+
+#imageViewer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+
+#imageViewer .image {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#imageViewer .image img {
+    max-height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.close-btn {
+    position: absolute;
+    top : 40px;
+    right: 40px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+.close-btn img {
+    width: 100%;
+    height: 100%;
+}
+
+.control-btn {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-btn img{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+    transition: opacity 0.5s;
+}
+
+.control-btn img:hover {
+    opacity: 1;
 }
 
 .album-page-content .switch-btn {
@@ -11,14 +79,31 @@
 }
 
 .btn-item {
+    width: 50%;
+    max-width: 150px;
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 22px;
     margin-right: 20px;
     font-family: 'Nunito', sans-serif;
     letter-spacing: 1px;
     color: rgb(52, 58, 64);
+    border-bottom: 2px solid #bdbdbd;
+    cursor: pointer;
+}
+
+.btn-item.active {
     border-bottom: 2px solid #16a085;
+}
+
+.btn-item:hover {
+    color: #16a085;
+}
+
+.btn-item div {
+    display: flex;
+    align-items: center;
 }
 
 .btn-item div:first-child {
@@ -38,10 +123,10 @@
     margin-bottom: 50px;
     line-height: 0;
         
-    -webkit-column-count: 4;
+    /* -webkit-column-count: 2;
     -webkit-column-gap:   0px;
     -moz-column-count:    4;
-    -moz-column-gap:      0px;
+    -moz-column-gap:      0px; */
     column-count:         4;
     column-gap:           0px;  
 }
@@ -51,21 +136,66 @@
     width: 100% !important;
     height: auto !important;
     border: 4px solid #fff;
+    cursor: pointer;
+  }
+
+  .content-section video {
+    width: 100% !important;
+    height: auto !important;
+    border: 20px solid #fff;
+    cursor: pointer;
   }
 
 
   @media (max-width: 900px) {
     .content-section {
-    -moz-column-count:    2;
-    -webkit-column-count: 2;
+    /* -moz-column-count:    2;
+    -webkit-column-count: 2; */
     column-count:         2;
     }
   }
 
   @media (max-width: 768px) {
     .content-section {
-    -moz-column-count:    1;
-    -webkit-column-count: 1;
+    /* -moz-column-count:    1;
+    -webkit-column-count: 1; */
     column-count:         1;
     }
   }
+
+
+  
+.video-group {
+    display: none;
+}
+
+.album-detail {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 100px;
+}
+
+.album-detail .action-btn {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    opacity: 0.2;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.album-detail .action-btn:hover {
+    opacity: 1;
+}
+
+.album-detail .action-btn img{
+    height: 40px;
+    width: 40px;
+}
+
+#uploadImage {
+    visibility: hidden;
+    opacity: 0;
+}

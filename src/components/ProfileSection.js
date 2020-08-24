@@ -10,7 +10,14 @@ class ProfileSection extends Component {
 
     uploadImg() {
         $('#imgInput').click();
-        
+    }
+
+    upOpacity() {
+        document.getElementById('addingIcon').style.opacity = 0.7
+    }
+
+    downOpacity() {
+        document.getElementById('addingIcon').style.opacity = 0.3
     }
     
     render() {
@@ -20,8 +27,11 @@ class ProfileSection extends Component {
                 <form id="profileForm">
                     <div className="profile-image">
                         <div className="text">Profile Image</div>
-                        <div className="adding-btn" for="image" onClick={() => this.uploadImg()}>
-                            <img src={plus}></img>
+                        <div className="adding-btn"
+                        onClick={() => this.uploadImg()}
+                        onMouseOver={() => this.upOpacity()}
+                        onMouseLeave={() => this.downOpacity()}>
+                            <img src={plus} id='addingIcon'></img>
                         </div>
                         <input type="file" name="image" id="imgInput"></input>
                         <div className="suggestion">Your profile icon is a center cropped square icon 

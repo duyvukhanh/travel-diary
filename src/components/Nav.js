@@ -25,7 +25,8 @@ class Nav extends Component {
             this.setState({
                 backgroundColor : "#fff",
                 height : "100px",
-                textColor : "#343a40"
+                textColor : "#343a40",
+                borderBottom : "none",
             })
         }
     }
@@ -36,13 +37,17 @@ class Nav extends Component {
             let backgroundColor = scrollY > 0 ? "#fff" : ""
             let height = scrollY > 0 ? "70px" : ""
             let textColor = scrollY > 0 ? "#343a40" : "#fff"
+            let borderBottom = scrollY > 0 ? "1px solid #bdbdbd" : "none"
             if (this.props.bg != "white") {
                 this.setState({
                     backgroundColor,
-                    height,
-                    textColor
+                    textColor,
                 })
             }
+            this.setState({
+                borderBottom,
+                height,
+            })
         }
     }
 
@@ -56,7 +61,8 @@ class Nav extends Component {
         }
         let navBackgroundStyle = {
             backgroundColor : this.state.backgroundColor,
-            height : this.state.height
+            height : this.state.height,
+            borderBottom : this.state.borderBottom,
         }
 
         let textColorStyle = {

@@ -8,7 +8,7 @@ class Footer extends Component {
     }
     
     render() {
-        let height = this.props.height || 500
+        let height = this.props.height || 600
         let style = {
             height: height + 'px'
         }

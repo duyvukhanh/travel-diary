@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './AboutPage.css'
-import ava from '../images/duyava.jpg'
+import avaDuy from '../images/duyava.jpg'
+import avaDung from '../images/dungava.jpg'
+
 
 class AboutPageItem extends Component {
     constructor(props) {
@@ -15,18 +17,18 @@ class AboutPageItem extends Component {
                 <div className="about-page-items">
                     <div className="about-page-item">
                         <div className="avatar">
-                            <img src={ava}></img>
+                            <img src={avaDuy}></img>
                         </div>
                         <div className="name">Khánh Duy</div>
-                        <div className="position">Frontend Developer</div>
+                        <div className="position">Frontend</div>
                         <div className="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut purus finibus enim cursus consequat. Integer ut tempus magna.</div>
                     </div>
                     <div className="about-page-item">
                         <div className="avatar">
-                            <img src={ava}></img>
+                            <img src={avaDung}></img>
                         </div>
-                        <div className="name">Khánh Duy</div>
-                        <div className="position">Frontend Developer</div>
+                        <div className="name">Nguyễn Dũng</div>
+                        <div className="position">Backend</div>
                         <div className="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut purus finibus enim cursus consequat. Integer ut tempus magna.</div>
                     </div>
                 </div>

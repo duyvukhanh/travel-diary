@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MainLayout from '../components/MainLayout'
 import UserPageHeader from '../components/UserPageHeader'
 import UserPageAlbumsSection from '../components/UserPageAlbumsSection'
+import AddingAlbum from '../components/UserPageAddingAlbum'
 
 class Gallery extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class Gallery extends Component {
             <MainLayout className="home-page" nav="white" headerContent="Save your memories">
                 <UserPageHeader></UserPageHeader>
                 <UserPageAlbumsSection></UserPageAlbumsSection>
+                <AddingAlbum></AddingAlbum>
             </MainLayout>
         )
     }

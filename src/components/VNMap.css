@@ -4,7 +4,9 @@
 }
 
 .land {
-    fill: #28334A;
+    /* fill: #28334A; mau` xanh nuoc bien*/
+    /* fill: #f7ab3a; mau` cam visited */
+    fill: #146554;
     stroke-width: 1px;
     stroke: white;
 }

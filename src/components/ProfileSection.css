@@ -34,16 +34,13 @@
     align-items: center;
     border-radius: 2px;
     cursor: pointer;
-    opacity: 0.5;
-}
-
-.profile-image .adding-btn:hover {
-    opacity: 1;
 }
 
 .profile-image .adding-btn img {
     width: 30px;
     height: 30px;
+    opacity: 0.3;
+    transition: opacity 0.3s;
 }
 
 .profile-image .suggestion {

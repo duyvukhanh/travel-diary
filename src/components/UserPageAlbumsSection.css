@@ -26,14 +26,52 @@
 }
 
 .user-album .album-image {
+    position: relative;
     width: 100%;
     height: 220px;
+}
+
+.user-album .album-image .img-blur {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    user-select: none;
+}
+
+.user-album .album-image .img-blur:hover {
+    opacity: 0.3;
 }
 
 .user-album .album-image img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    cursor: pointer;
+}
+
+.user-album .voted {
+    padding-right: 10px;
+    font-family: "Nunito", sans-serif;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.user-album .voted img {
+    height: 18px;
+    width: 18px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.user-album .voted span {
+    font-size: 17px;
+    user-select: none;
 }
 
 .user-album .album-title {
@@ -42,6 +80,11 @@
     letter-spacing: 1px;
     text-align: center;
     padding-top: 14px;
+    cursor: pointer;
+}
+
+.user-album .album-title:hover {
+    color: #16a085;
 }
 
 .user-album .album-date {
@@ -50,4 +93,26 @@
     text-align: center;
     opacity: 0.6;
     font-size: 12px;
+}
+
+.adding-block {
+    background-color: #bdbdbd;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    user-select: none;
+}
+
+.adding-block:hover {
+    opacity: 1;
+}
+
+.adding-block img {
+    height: 60px !important;
+    width: 60px !important;
 }

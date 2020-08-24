@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './AlbumPageHeader.css'
 import ava from '../images/duyava.jpg'
+import $ from 'jquery'
 
 class AlbumPageHeader extends Component {
     constructor(props) {
@@ -10,7 +11,13 @@ class AlbumPageHeader extends Component {
     componentDidMount() {
         document.getElementsByClassName('main')[0].style.width = "100%"
         document.getElementsByClassName('main')[0].style.maxWidth = "100%"
+    }
 
+    toAlbumContent() {
+        let scrollHeight = $('.album-page-header').height();
+        console.log(scrollHeight)
+
+        window.scrollTo(0, scrollHeight);
     }
     
     render() {
@@ -25,7 +32,7 @@ class AlbumPageHeader extends Component {
                         February 9th, 2020
                     </div>
                     <div className="start-button">
-                        <button>Open</button>
+                        <button onClick={() => this.toAlbumContent()}>Open</button>
                     </div>
                 </div>
                 <div className="owner-block">

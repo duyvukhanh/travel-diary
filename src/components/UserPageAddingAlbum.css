@@ -1,0 +1,95 @@
+
+
+.adding-album-block {
+    position: fixed;
+    width: 800px;
+    /* background-color: brown; */
+    z-index: 333;
+    top: 50%;
+    left: 50%;
+    margin-left: -400px;
+    margin-top: -300px;
+    /* border: 1px solid black; */
+    box-shadow: 5px 10px 8px #888888;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.adding-album-title {
+    display: flex;
+    align-items: center;
+    background-color: #bdbdbd;
+    height: 100px;
+    width: 100%;
+    padding-left: 30px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+}
+
+#addingAlbumForm {
+    width: 100%;
+    background-color: #fff;
+    padding: 15px 30px;
+}
+
+.album-input {
+    margin-top: 40px;
+}
+
+.album-input div {
+    font-weight: 600;
+    font-family: "Nunito", sans-serif;
+    margin-bottom: 10px;
+}
+
+.album-input input {
+    height: 45px;
+    width: 100%;
+    font-size: 20px;
+    padding: 0 17px;
+    font-family: "Nunito", sans-serif;
+    border: 1px solid #bdbdbd;
+}
+
+.button-group {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.button-group #cancelBtn {
+    height: 40px;
+    width: 100px;
+    font-size: 15px;
+    border: none;
+    background: none;
+    color: #1d1d1d;
+    font-family: "Nunito", sans-serif;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.button-group #cancelBtn:hover {
+    opacity: 1;
+}
+
+.button-group #submitBtn {
+    height: 40px;
+    width: 100px;
+    font-size: 15px;
+    border: none;
+    background: #16a085;
+    color: #fff;
+    font-family: "Nunito", sans-serif;
+    cursor: pointer;
+}
+
+.button-group #submitBtn:hover {
+    background-color: #13866f;
+}

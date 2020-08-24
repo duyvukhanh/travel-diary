@@ -1,7 +1,7 @@
 .header {
     position: relative;
     height: 500px;
-    background-image: url('https://i.pinimg.com/originals/f4/fe/ce/f4fece4d5d111083e1c65ffbead7a92c.jpg');
+    background-image: url('https://www.telegraph.co.uk/content/dam/news/2020/05/29/GettyImages-833247510_trans_NvBQzQNjv4BqtGQB12KHxxQCrwnTZkX0nwgWqwm85JEWpGVhFb46TTg.jpg');
     /* background-image: linear-gradient(to top, transparent, #000), url("https://i.pinimg.com/originals/f4/fe/ce/f4fece4d5d111083e1c65ffbead7a92c.jpg"); */
     background-position: center;
     background-size: cover;

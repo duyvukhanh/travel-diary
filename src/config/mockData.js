@@ -21,7 +21,7 @@ galleries = [
         place : "VN-02",
         albumName : "Sa Pa",
         owner : "user01",
-        dateCreated : "24 February 2020",
+        date : "24 February 2020",
         voted : 3,
         images : [
             "album01image1",
@@ -29,6 +29,9 @@ galleries = [
             "album01image3",
             "album01image4",
             "album01image5",
+        ],
+        videos : [
+            "album01video1"
         ]
     }
 ]
