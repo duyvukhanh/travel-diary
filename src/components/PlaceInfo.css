@@ -36,6 +36,15 @@
         padding: 0 10px;
     }
 }
+.place-info ul li a {
+    text-decoration: none;
+    /* color: #000; */
+}
+
+.place-info ul li a:visited {
+    text-decoration: none;
+    color: #000;
+}
 
 .place-info ul li {
     font-size: 20px;
@@ -46,5 +55,9 @@
 }
 
 .place-info ul li:hover {
-    color: #16a085;
+    color: #16a085 !important;
+}
+
+.place-info ul li a:hover {
+    color: #16a085 !important;
 }

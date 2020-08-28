@@ -1,5 +1,6 @@
 
 import { ACTION_TYPES } from '../config'
+import userInfo from '../reducers/userInfo'
 
 const changeEmail = (email) => {
     return {
@@ -15,7 +16,15 @@ const changeFullname = (fullname) => {
     }
 }
 
+const changeUserInfo = (userInfo) => {
+    return {
+        type: ACTION_TYPES.CHANGE_UI,
+        userInfo
+    }
+}
+
 export {
     changeEmail,
-    changeFullname
+    changeFullname,
+    changeUserInfo,
 }

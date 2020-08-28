@@ -33,12 +33,27 @@
 
 .login-form input {
     height: 60px;
-    margin : 0 40px 30px 40px;
+    margin : 0 40px 10px 40px;
     padding-left: 20px;
     font-size: 20px;
     font-family: 'Nunito', sans-serif;
     outline: none;
     border: 1px solid #16a085;
+}
+
+.warning {
+    margin-left: 40px;
+    margin-bottom: 25px;
+    padding-left: 20px;
+    font-size: 15px;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    color: #dc3545;
+    visibility: hidden;
+}
+
+.warning.active{
+    visibility: visible;
 }
 
 .login-form button {

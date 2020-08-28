@@ -3,7 +3,8 @@ import './UserPageHeader.css'
 import ava from '../images/duyava.jpg'
 import emailIcon from '../icons/email.png'
 import instagramIcon from '../icons/instagram.png'
-
+import { connect } from 'react-redux'
+import { changeUserInfo } from '../actions'
 
 class UserPageHeader extends Component {
     constructor(props) {
@@ -11,29 +12,42 @@ class UserPageHeader extends Component {
     }
     
     render() {
+        let loggedInUser = this.props.userInfo
         return (
             <div className="user-page-header">
                 <div className="user-img">
-                    <img src={ava}></img>
+                    <img src={require(`../images/${loggedInUser.userImg}`)}></img>
                 </div>
-                <div className="user-name">Khánh Duy</div>
+                <div className="user-name">{ loggedInUser.displayName }</div>
                 <div className="user-bio">
-                    <span>Software Engineer</span>
+                    <span>{ loggedInUser.bio }</span>
                 </div>
                 <div className="user-info">
                     <span className="user-email"> 
                         <img src={emailIcon}></img>
-                        duyvukhanh@gmail.com
+                        { loggedInUser.userFacebook }
                     </span>
                     <span className="user-ig">
                         <img src={instagramIcon}></img>
-                        khanhduy2906
+                        { loggedInUser.userInstagram }
                     </span>
                 </div>
-                <div class="spread-line"></div>
+                <div className="spread-line"></div>
             </div>
         )
     }
 }
 
-export default UserPageHeader
+
+const mapStateToProps = (state) => {
+    let { userInfo } = state
+    return { userInfo }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeUserInfo: (userInfo) => dispatch(changeUserInfo(userInfo))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPageHeader)

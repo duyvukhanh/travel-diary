@@ -7,34 +7,27 @@ import rightArrow from '../icons/right.svg'
 import xIcon from '../icons/close.svg'
 import upload from '../icons/upload.svg'
 import $ from 'jquery'
-
-
-import image1 from '../images/image1.jpg'
-import image2 from '../images/image2.jpg'
-import image3 from '../images/image3.jpg'
-import image4 from '../images/image4.jpg'
-import image5 from '../images/image5.jpg'
-import image6 from '../images/image6.jpg'
-import image7 from '../images/image7.jpg'
-import image8 from '../images/image8.jpg'
-import image9 from '../images/image9.jpg'
-import image10 from '../images/image10.jpg'
-import image11 from '../images/image11.jpg'
-import image12 from '../images/image12.jpg'
-import image13 from '../images/image13.jpg'
-import image14 from '../images/image14.jpg'
-
-import video1 from '../videos/video1.mp4'
-
+import { connect } from 'react-redux'
+import { changeUserInfo } from '../actions'
+import { API_PATHS } from '../config'
 
 class AlbumPageContent extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            albumId : '',
+            album : {
+                images: [],
+                videos: [],
+            },
+        }
     }
 
-    showImage() {
+    showImage(image) {
         document.getElementById('imageViewer').style.opacity = 1
         document.getElementById('imageViewer').style.visibility = "visible"
+        let img = require(`../images/${image}.jpg`)
+        document.getElementsByClassName('image')[0].innerHTML = ` <img src='${img}'></img> `
     }
 
     closeImage() {
@@ -45,28 +38,39 @@ class AlbumPageContent extends Component {
     showPictures() {
         document.getElementsByClassName('picture-group')[0].style.display = "block"
         document.getElementsByClassName('video-group')[0].style.display = "none"
-    
         document.getElementById('pictureBtn').classList.add('active')
         document.getElementById('videoBtn').classList.remove('active')
-
         document.getElementsByClassName('content-section')[0].style.columnCount = 4
     }
 
     showVideos() {
         document.getElementsByClassName('picture-group')[0].style.display = "none"
         document.getElementsByClassName('video-group')[0].style.display = "block"
-
         document.getElementById('videoBtn').classList.add('active')
         document.getElementById('pictureBtn').classList.remove('active')
-
         document.getElementsByClassName('content-section')[0].style.columnCount = 2
     }
 
     uploadImg() {
         $('#uploadImage').click();
     }
+
+    async componentWillMount() {
+        let url = new URL(window.location.href)
+        let params = new URLSearchParams(url.search);
+        let albumId = params.get('id')
+        this.setState({albumId})
+        let API = API_PATHS.GALLERY_GET_ONE + '/' + albumId
+        let rawResponse = await fetch(API, {
+            method: 'GET',
+        })
+        let album = await rawResponse.json()
+        this.setState({album})
+    }
     
-    render() {
+    render() {  
+        let album = this.state.album
+        console.log(album)
         return (
             <div className="album-page-content">
                 <div id="imageViewer">
@@ -77,7 +81,7 @@ class AlbumPageContent extends Component {
                         <img src={leftArrow}></img>
                     </div>
                     <div className="image">
-                        <img src={image1}></img>
+                        {/* <img src={image1}></img> */}
                     </div>
                     <div className="control-btn">
                         <img src={rightArrow}></img>
@@ -107,37 +111,35 @@ class AlbumPageContent extends Component {
                 </div>
                 <section className="content-section">
                     <div className="picture-group">
-                        <img src={image1} onClick={() => this.showImage()}></img>
-                        <img src={image2}></img>
-                        <img src={image3}></img>
-                        <img src={image4}></img>
-                        <img src={image5}></img>
-                        <img src={image6}></img>
-                        <img src={image7}></img>
-                        <img src={image8}></img>
-                        <img src={image9}></img>
-                        <img src={image10}></img>
-                        <img src={image11}></img>
-                        <img src={image12}></img>
-                        <img src={image13}></img>
-                        <img src={image14}></img>
+                        {
+                            album.images.map((image,i) => {
+                                return <img key={i} src={require(`../images/${image}.jpg`)} onClick={() => this.showImage(image)}></img>
+                            })
+                        }
                     </div>
                     <div className="video-group">
-                        <video src={video1+'#t=1'} controls></video>
-                        <video src={video1+'#t=3'} controls></video>
-                        <video src={video1+'#t=5'} controls></video>
+                        {
+                            album.videos.map((video,i) => {
+                                return <video key={i} src={require(`../videos/${video}.mp4`)} controls></video>
+                            })
+                        }
+                      
                     </div>
-                   
-                    
-                    
-
-
                 </section>
-
-            
             </div>
         )
     }
 }
 
-export default AlbumPageContent
+const mapStateToProps = (state) => {
+    let { userInfo } = state
+    return { userInfo }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeUserInfo: (userInfo) => dispatch(changeUserInfo(userInfo))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumPageContent)

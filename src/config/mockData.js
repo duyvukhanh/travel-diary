@@ -1,7 +1,7 @@
 users = [
     {
         userId : "user01", //mongo
-        name : "Khanh Duy",
+        displayName : "Khanh Duy",
         email : "duyvukhanh@gmail.com",
         password : "hashedMD5",
         userImg : "duyava.jpg",
@@ -11,7 +11,7 @@ users = [
         userInstagram : "https://www.instagram.com/khanhduy2906/",
         bio : "Hiện đang thất nghiệp",
         gallery : ["album01","album02"],
-        voteFor = ["album03","album04"]
+        voteFor : ["album03","album04"]
     }
 ]
 

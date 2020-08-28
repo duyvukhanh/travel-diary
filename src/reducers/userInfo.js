@@ -1,9 +1,6 @@
 import { ACTION_TYPES } from '../config'
 
-const initialState = {
-    email: 'xxx@gmail.com',
-    fullname: 'ich ich ich'
-}
+const initialState = JSON.parse(localStorage.getItem('currentUser')) || {}
 
 const userInfo = (state = initialState, payload) => {
     switch(payload.type) {
@@ -20,6 +17,9 @@ const userInfo = (state = initialState, payload) => {
                 ...state,
                 fullname
             }
+        }
+        case ACTION_TYPES.CHANGE_UI: {
+            return payload.userInfo
         }
 
         default : {

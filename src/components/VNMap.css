@@ -1,14 +1,24 @@
+.land {
+    /* fill: #28334A; mau` xanh nuoc bien*/
+    /* fill: #c19046; mau` cam visited */
+    /* f7ab3a mau` cam hover */
+    fill: #146554;
+    stroke-width: 1px;
+    stroke: white;
+}
+
 .land:hover {
     fill: #16a085;
     cursor: pointer;
 }
 
-.land {
-    /* fill: #28334A; mau` xanh nuoc bien*/
-    /* fill: #f7ab3a; mau` cam visited */
-    fill: #146554;
-    stroke-width: 1px;
-    stroke: white;
+.land.checked {
+    fill: #c19046 !important;
+    /* c19046; */
+}
+
+.land.checked:hover {
+    fill: #f7ab3a !important;
 }
 
 .map-svg {

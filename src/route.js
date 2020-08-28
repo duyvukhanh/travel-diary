@@ -23,7 +23,7 @@ class Routes extends Component {
                 <Route exact path="/">
                     <HomePage />
                 </Route>
-                <Route exact path="/gallery">
+                <Route path="/gallery">
                     <GalleryPage />
                 </Route>
                 <Route path="/album">

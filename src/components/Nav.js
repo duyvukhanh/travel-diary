@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import './Nav.css'
 import menu from '../icons/menu.svg';
+import { connect } from 'react-redux'
+import {changeUserInfo} from '../actions'
 
 class Nav extends Component {
     constructor(props) {
@@ -12,6 +14,12 @@ class Nav extends Component {
             height : "100px",
             textColor : "#fff",
         }
+    }
+
+    handleLogout() {
+        this.props.changeUserInfo({})
+        localStorage.setItem('currentUser',JSON.stringify({}))
+        window.location.href = "/"
     }
     
     showMenu() {
@@ -68,6 +76,7 @@ class Nav extends Component {
         let textColorStyle = {
             color : this.state.textColor
         }
+        let isLoggedIn = Object.keys(this.props.userInfo).length == 0 ? false : true
         return (
             <nav className="nav" style={navBackgroundStyle}>
                 <div className="nav-home-item" >
@@ -75,16 +84,32 @@ class Nav extends Component {
                 </div>
                 <div className="nav-group-items">
                     <Link to="/" className="nav-item nav-active" style={textColorStyle}>Home</Link>
-                    <Link to="/gallery" className="nav-item" style={textColorStyle}>Gallery</Link>
-                    <Link to="/profile" className="nav-item" style={textColorStyle}>Profile</Link>
+                    {
+                        isLoggedIn
+                        ? 
+                            <Link to="/gallery" className="nav-item" style={textColorStyle}>Gallery</Link>
+                        : ""
+                    }
+                    {
+                        isLoggedIn
+                        ? 
+                            <Link to="/profile" className="nav-item" style={textColorStyle}>Profile</Link>
+                        : ""
+                    }
+                            
+                    
                     <Link to="/about" className="nav-item" style={textColorStyle}>About</Link>
-                    <Link to="/login" className="nav-item" style={textColorStyle}>login</Link>
-                    {/* <Link to="/" className="nav-item">Đăng xuất</Link> */}
+                    
+                    {
+                        isLoggedIn 
+                        ? 
+                            (<Link to="#" className="nav-item" onClick={() => this.handleLogout()} style={textColorStyle}>Đăng xuất</Link>)
+                        :
+                            (<Link to="/login" className="nav-item" style={textColorStyle}>login</Link>)
+                    }
                 </div>
                 <div className="nav-group-items-sm" onClick={() => this.showMenu()}>
                     <img src={menu}></img>
-                        {/* <svg height="30" viewBox="0 -53 384 384" width="30" xmlns="http://www.w3.org/2000/svg"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg> */}
-                    
                 </div>
                 <div className="nav-group-items-sm-extend" style={style}>
                     <Link to="/" className="nav-item-extend">Home</Link>
@@ -100,4 +125,15 @@ class Nav extends Component {
     }
 }
 
-export default Nav
+const mapStateToProps = (state) => {
+    let { userInfo } = state
+    return { userInfo }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeUserInfo: (userInfo) => dispatch(changeUserInfo(userInfo))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)

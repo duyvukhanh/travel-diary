@@ -55,6 +55,16 @@
     border: 1px solid #bdbdbd;
 }
 
+.album-input select {
+    height: 45px;
+    width: 100%;
+    font-size: 20px;
+    padding: 0 17px;
+    font-family: "Nunito", sans-serif;
+    border: 1px solid #bdbdbd;
+    -webkit-appearance: none;
+}
+
 .button-group {
     margin-top: 40px;
     display: flex;
