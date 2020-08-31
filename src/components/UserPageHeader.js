@@ -5,14 +5,36 @@ import emailIcon from '../icons/email.png'
 import instagramIcon from '../icons/instagram.png'
 import { connect } from 'react-redux'
 import { changeUserInfo } from '../actions'
+import { API_PATHS } from '../config'
 
 class UserPageHeader extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            thisUser: this.props.userInfo,
+            userToDisplay: null
+        }
+    }
+
+    async componentWillMount() {
+        let loggedInUser = this.props.userInfo
+
+        let url = new URL(window.location.href)
+        let params = new URLSearchParams(url.search);
+        let userId = params.get('userId') || loggedInUser._id
+
+        let API = API_PATHS.GET_USER + userId
+        let rawResponse = await fetch(API, {
+            method: 'GET',
+        })
+        let thisUser = await rawResponse.json()
+        this.setState({
+            thisUser
+        })
     }
     
     render() {
-        let loggedInUser = this.props.userInfo
+        let loggedInUser = this.state.thisUser
         return (
             <div className="user-page-header">
                 <div className="user-img">

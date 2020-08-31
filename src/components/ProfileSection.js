@@ -29,20 +29,24 @@ class ProfileSection extends Component {
     }
 
     uploadFile(e) {
+        let loggedInUser = this.props.userInfo
         document.getElementById("notSavedImg").style.visibility = "visible"
         let file = e.target.files[0];
-        var reader = new FileReader();
-        var url = reader.readAsDataURL(file);
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
         reader.onloadend = (e) => {
             this.setState({
                 ImgPreview: [reader.result]
             })
-            document.getElementById('userImage').src = this.state.ImgPreview
+            if ( loggedInUser.userImg !== 'default' ) {
+                document.getElementById('userImage').src = this.state.ImgPreview
+            } else {
+                document.getElementsByClassName('adding-btn')[0].style.backgroundImage = `url(${this.state.ImgPreview})`
+                document.getElementsByClassName('adding-btn')[0].style.backgroundSize = `cover`
+                document.getElementById('addingIcon').style.opacity = 0
+            }
         }
-        
-
         this.setState({ file });
-
     }
 
     async handleFormUpdate(e) {
@@ -69,7 +73,9 @@ class ProfileSection extends Component {
             bio,
         }
         for (const [key, value] of Object.entries(userToUpdate)) {
-            formData.append(key, value)
+            if ( value != '' ) {
+                formData.append(key, value)
+            }
         }
         let rawResponse = await fetch(API, {
             method: 'PUT',
@@ -93,7 +99,6 @@ class ProfileSection extends Component {
 
     render() {
         let loggedInUser = this.props.userInfo
-
         return (
             <div className="profile-section">
                 <div className="title">Profile</div>
@@ -101,7 +106,7 @@ class ProfileSection extends Component {
                     <div className="profile-image">
                         <div className="text">Profile Image</div>
                         {
-                            (loggedInUser.userImg != "default") ? (
+                            (loggedInUser.userImg != "default" || !loggedInUser.userImg) ? (
                                 <div className="user-img" onClick={() => this.uploadImg()}>
                                     <img id="userImage" src={require(`../images/${loggedInUser.userImg}`)}></img>
                                 </div>

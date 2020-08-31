@@ -8,6 +8,8 @@ import AddingAlbum from './UserPageAddingAlbum'
 import { connect } from 'react-redux'
 import { changeUserInfo } from '../actions'
 import { API_PATHS } from '../config'
+import { Link } from 'react-router-dom'
+import $ from 'jquery'
 
 
 
@@ -16,27 +18,88 @@ class UserPageAlbumsSection extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            voted: false,
+            votedAlbums: [],
             albumList: [],
+            thisUser: this.props.userInfo
         }
     }
 
-    vote() {
-        let voted = this.state.voted
-        this.setState({
-            voted: !voted
-        })
-        let currentVoted = document.getElementById('numberOfVoted').innerHTML
-        if (voted) {
-            document.getElementById('numberOfVoted').innerHTML = Number(currentVoted) - 1
+    async vote(album) {
+        let albumList = this.state.albumList
+        let albumIndex = albumList.indexOf(album)
+        let loggedInUser = this.props.userInfo
+        let votedAlbums = this.state.votedAlbums
+        let votedForUpdated = [...loggedInUser.votedFor]
+        let votedUpdated = Number(document.getElementById('numberOfVoted').innerHTML)
+        if ( votedAlbums.includes(album._id) ) {
+            let index = votedAlbums.indexOf(album._id)
+            votedAlbums.splice(index, 1)
+            this.setState({
+                votedAlbums : [...votedAlbums]
+            })
+            document.getElementById('numberOfVoted').innerHTML = Number(votedUpdated) - 1
+            votedUpdated = votedUpdated - 1
+            let index1 = votedForUpdated.indexOf(album._id)
+            votedForUpdated.splice(index1, 1)
         } else {
-            document.getElementById('numberOfVoted').innerHTML = Number(currentVoted) + 1
+            votedAlbums.push(album._id)
+            this.setState({
+                votedAlbums : [...votedAlbums]
+            })
+            document.getElementById('numberOfVoted').innerHTML = Number(votedUpdated) + 1
+            votedForUpdated.push(album._id)
+            votedUpdated = votedUpdated + 1
+        }
+
+        let userToUpdate = {
+            ...loggedInUser,
+            votedFor : [...votedForUpdated]
+        }
+        let API = API_PATHS.UPDATE_USER
+        let rawResponse = await fetch(API, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userToUpdate)
+        })
+        let response = await rawResponse.json()
+        if (response.message) {
+            console.log("User update Failed")
+        } else {
+            console.log(response)
+            localStorage.setItem('currentUser', JSON.stringify(response))
+            this.props.changeUserInfo(response)
+        }
+
+        let albumToUpdate = {
+            ...album,
+            voted : votedUpdated
+        }
+        let API1 = API_PATHS.GALLERY_UPDATE
+        let rawResponse1 = await fetch(API1, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(albumToUpdate)
+        })
+        let response1 = await rawResponse1.json()
+        if (response1.message) {
+            console.log("Album update Failed")
+        } else {
+            albumList[albumIndex] = response1
+            this.setState({
+                albumList
+            })
         }
     }
 
-    toAlbumPage(e) {
-        // console.log(e.target.id)
-        window.location.href = `/album?id=${e.target.id}`
+    toAlbumPage(e,album) {
+        e.preventDefault()
+        window.location.href = `/album?id=${album._id}`
     }
 
     addAlbum() {
@@ -45,8 +108,21 @@ class UserPageAlbumsSection extends Component {
     }
 
     async componentDidMount() {
-        let loggedInUserId = this.props.userInfo._id
-        let API = API_PATHS.GALLERY_GET_MANY + `?owner=${loggedInUserId}`
+        let loggedInUser = this.props.userInfo
+        let url = new URL(window.location.href)
+        let params = new URLSearchParams(url.search);
+        let userId = params.get('userId') || loggedInUser._id
+
+        let API1 = API_PATHS.GET_USER + userId
+        let rawResponse1 = await fetch(API1, {
+            method: 'GET',
+        })
+        let thisUser = await rawResponse1.json()
+        this.setState({
+            thisUser
+        })
+
+        let API = API_PATHS.GALLERY_GET_MANY + `?owner=${userId}`
         let rawResponse = await fetch(API, {
             method: 'GET',
         })
@@ -54,33 +130,42 @@ class UserPageAlbumsSection extends Component {
         this.setState({
             albumList
         })
+
+        let votedAlbums = []
+        for ( let album of albumList) {
+            if ( loggedInUser.votedFor.includes(album._id) ) {
+                votedAlbums.push(album._id)
+            }
+        }
+        this.setState({
+            votedAlbums : [...votedAlbums]
+        })
     }
 
     render() {
         let loggedInUser = this.props.userInfo
+        let thisUser = this.state.thisUser
         let albumList = this.state.albumList
         return (
             <div className="user-albums-section">
                 {
                     albumList.map((album, i) => {
+                        let heart = this.state.votedAlbums.includes(album._id) ? require('../icons/red-heart.png') : require('../icons/black-heart.png')
                         return (
-                            <div className="user-album" key={i}>
-                                <div className="album-image" onClick={(e) => this.toAlbumPage(e)}>
-                                    <div className="img-blur" id={album._id}></div>
+                            <div className="user-album" id={album._id} key={i}>
+                                <div className="album-image">
+                                    <div className="img-blur" onClick={(e) => this.toAlbumPage(e,album)}></div>
                                     {
-                                        album.images[0] ? <img src={require(`../images/${album.images[0]}.jpg`)}></img> : <img src={require('../images/default.jpg')}></img>
+                                        album.images[0] ? <img src={require(`../images/${album.images[0]}`)}></img> : <img src={require('../images/default.jpg')}></img>
                                     }
                                 </div>
                                 <div className="voted">
-                                    {
-                                        this.state.voted ?
-                                            (<img src={redHeart} onClick={() => this.vote()}></img>) :
-                                            (<img src={blackHeart} onClick={() => this.vote()}></img>)
-                                    }
+                                    <img src={heart} onClick={() => this.vote(album)}></img>
+
 
                                     <span id="numberOfVoted"> {album.voted} </span>
                                 </div>
-                                <div className="album-title" onClick={(album) => this.toAlbumPage(album)}>
+                                <div className="album-title" onClick={(e) => this.toAlbumPage(e,album)}>
                                     {album.albumName}
                                 </div>
                                 <div className="album-date">
@@ -91,16 +176,19 @@ class UserPageAlbumsSection extends Component {
                     })
                 }
 
+                {
+                    loggedInUser._id === thisUser._id ? 
+                    <div className="user-album" id="addAlbum" onClick={() => this.addAlbum()}>
+                        <div className="album-image">
+                            <div className="adding-blur"></div>
+                            <div className="adding-block">
+                                <img src={add}></img>
+                            </div>
 
-                <div className="user-album" id="addAlbum" onClick={() => this.addAlbum()}>
-                    <div className="album-image">
-                        <div className="adding-blur"></div>
-                        <div className="adding-block">
-                            <img src={add}></img>
                         </div>
-
-                    </div>
-                </div>
+                    </div> : ""
+                }
+                
 
             </div>
         )

@@ -45,13 +45,10 @@ class AlbumPageHeader extends Component {
 
     toAlbumContent() {
         let scrollHeight = $('.album-page-header').height();
-        console.log(scrollHeight)
-
         window.scrollTo(0, scrollHeight);
     }
     
     render() {
-        console.log(this.state.thisUser)
         return (
             <div className="album-page-header">
                 <div className="fade"></div>

@@ -39,6 +39,7 @@ class AddingAlbum extends Component {
         let date = addingAlbumForm.date.value
         let place = addingAlbumForm.place.value
 
+        // create new album 
         date = new Date(date)
         let day = date.getDate()
         day = this.ordinal_suffix_of(day)
@@ -53,7 +54,6 @@ class AddingAlbum extends Component {
             owner: this.props.userInfo._id,
             voted: 0,
         })
-        console.log(reqBody)
         let rawResponse = await fetch(API, {
             method: 'POST',
             headers: {
@@ -63,6 +63,26 @@ class AddingAlbum extends Component {
             body: reqBody
         })
         
+        // add album to user
+        let album = await rawResponse.json()
+        console.log(album)
+        let playloadToUpdate = JSON.stringify({
+            _id : this.props.userInfo._id,
+            gallery : [...this.props.userInfo.gallery, album._id]
+        })
+        let API1 = API_PATHS.UPDATE_USER
+
+        let rawResponseUser = await fetch(API1, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: playloadToUpdate
+        })
+        let userUpdated = await rawResponseUser.json()
+        localStorage.setItem('currentUser', JSON.stringify(userUpdated))
+        this.props.changeUserInfo(userUpdated)
     }
 
     render() {

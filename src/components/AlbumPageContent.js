@@ -23,12 +23,34 @@ class AlbumPageContent extends Component {
         }
     }
 
-    showImage(image) {
+    showImage(images, index) {
+        let maxIndex = images.length - 1
+        let minIndex = 0
+        let nextIndex = index + 1
+        let prevIndex = index - 1
+        if (nextIndex > maxIndex) {
+            nextIndex = 0
+        }
+        if (prevIndex < minIndex) {
+            prevIndex = maxIndex
+        }
         document.getElementById('imageViewer').style.opacity = 1
         document.getElementById('imageViewer').style.visibility = "visible"
-        let img = require(`../images/${image}.jpg`)
+        let img = require(`../images/${images[index]}`)
         document.getElementsByClassName('image')[0].innerHTML = ` <img src='${img}'></img> `
+
+        $('#nextImage').on("click",() => {
+            $("#nextImage").off("click");
+            this.showImage(images,nextIndex)
+        })
+        $('#prevImage').on("click",() => {
+            $("#prevImage").off("click");
+            this.showImage(images,prevIndex)
+        })
+
+        // $('#prevImage').click(() => this.showImage(images,prevInde
     }
+
 
     closeImage() {
         document.getElementById('imageViewer').style.opacity = 0
@@ -55,7 +77,7 @@ class AlbumPageContent extends Component {
         $('#uploadImage').click();
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         let url = new URL(window.location.href)
         let params = new URLSearchParams(url.search);
         let albumId = params.get('id')
@@ -67,33 +89,68 @@ class AlbumPageContent extends Component {
         let album = await rawResponse.json()
         this.setState({album})
     }
+
+    async handleUploadImageToAnlbum(e) {
+        let API = API_PATHS.GALLERY_UPDATE
+        let album = this.state.album
+        
+        let fileList = e.target.files
+        const formData = new FormData()
+        for (const key of Object.keys(fileList)) {
+            formData.append('fileListUploaded', fileList[key])
+        }
+        for (const [key, value] of Object.entries(album)) {
+            formData.append(key, value)
+        }
+
+        let rawResponse = await fetch(API, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                // 'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        })
+        let response = await rawResponse.json()
+        if (response.message) {
+            console.log("Failed")
+        } else {
+            console.log(response)
+        }
+    }
     
     render() {  
         let album = this.state.album
-        console.log(album)
+        let loggedInUser = this.props.userInfo
         return (
             <div className="album-page-content">
                 <div id="imageViewer">
                     <div className="close-btn" onClick={() => this.closeImage()}>
                         <img src={xIcon}></img>
                     </div>
-                    <div className="control-btn">
+                    <div className="control-btn" id="prevImage">
                         <img src={leftArrow}></img>
                     </div>
                     <div className="image">
                         {/* <img src={image1}></img> */}
                     </div>
-                    <div className="control-btn">
+                    <div className="control-btn" id="nextImage">
                         <img src={rightArrow}></img>
                     </div>
                 </div>
-
+                
                 <div className="album-detail">
-                    <input id="uploadImage" type="file"></input>
-                    <div className="action-btn" onClick={() => this.uploadImg()}>
-                        <img src={upload}></img>
-                    </div>
+                    <input id="uploadImage" type="file" multiple onChange={(e) => {this.handleUploadImageToAnlbum(e)}}></input>
+                    {
+                        loggedInUser.gallery.includes(album._id) ? 
+                        <div className="action-btn" onClick={() => this.uploadImg()}>
+                            <img src={upload}></img>
+                        </div> : ""
+                    }
+                    
                 </div>
+                
+                
 
                 <div className="switch-btn">
                     <div id="pictureBtn" className="btn-item active" onClick={() => this.showPictures()}>
@@ -113,7 +170,7 @@ class AlbumPageContent extends Component {
                     <div className="picture-group">
                         {
                             album.images.map((image,i) => {
-                                return <img key={i} src={require(`../images/${image}.jpg`)} onClick={() => this.showImage(image)}></img>
+                                return <img key={i} src={require(`../images/${image}`)} onClick={() => this.showImage(album.images,i)}></img>
                             })
                         }
                     </div>

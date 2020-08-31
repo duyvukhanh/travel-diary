@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import './Nav.css'
-import menu from '../icons/menu.svg';
+import menu from '../icons/menu.svg'
+import search_black from '../icons/search.svg'
+import search_white from '../icons/search_white.svg'
+
 import { connect } from 'react-redux'
 import {changeUserInfo} from '../actions'
+
 
 class Nav extends Component {
     constructor(props) {
@@ -99,15 +103,28 @@ class Nav extends Component {
                             
                     
                     <Link to="/about" className="nav-item" style={textColorStyle}>About</Link>
-                    
-                    {
-                        isLoggedIn 
-                        ? 
-                            (<Link to="#" className="nav-item" onClick={() => this.handleLogout()} style={textColorStyle}>Đăng xuất</Link>)
-                        :
-                            (<Link to="/login" className="nav-item" style={textColorStyle}>login</Link>)
-                    }
+
+                    <div className="search-box">
+                        {/* <Link to="/#" className="nav-item" style={textColorStyle}>Search</Link> */}
+                        <img src={search_white}></img>
+                        <input type="text"></input>
+                        <div className="search-btn">
+                            <img src={search_black}></img>
+                        </div>
+                    </div>
                 </div>
+                {
+                    isLoggedIn 
+                    ? 
+                    <div className="nav-group-items last-group">
+                        
+                        <Link to="#" className="nav-item" onClick={() => this.handleLogout()} style={textColorStyle}>Đăng xuất</Link>
+                    </div>
+                    :
+                    <div className="nav-group-items last-group">
+                        <Link to="/login" className="nav-item" style={textColorStyle}>login</Link>
+                    </div>
+                }
                 <div className="nav-group-items-sm" onClick={() => this.showMenu()}>
                     <img src={menu}></img>
                 </div>
