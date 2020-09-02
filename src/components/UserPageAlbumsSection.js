@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
 import './UserPageAlbumsSection.css'
-import image from '../images/duyava.jpg'
-import blackHeart from '../icons/black-heart.png'
-import redHeart from '../icons/red-heart.png'
 import add from '../icons/plus.png'
-import AddingAlbum from './UserPageAddingAlbum'
 import { connect } from 'react-redux'
 import { changeUserInfo } from '../actions'
 import { API_PATHS } from '../config'
-import { Link } from 'react-router-dom'
-import $ from 'jquery'
 
 
 
@@ -156,11 +150,11 @@ class UserPageAlbumsSection extends Component {
                                 <div className="album-image">
                                     <div className="img-blur" onClick={(e) => this.toAlbumPage(e,album)}></div>
                                     {
-                                        album.images[0] ? <img src={require(`../images/${album.images[0]}`)}></img> : <img src={require('../images/default.jpg')}></img>
+                                        album.images[0] ? <img alt="" src={require(`../images/${album.images[0]}`)}></img> : <img alt="" src={require('../images/default.jpg')}></img>
                                     }
                                 </div>
                                 <div className="voted">
-                                    <img src={heart} onClick={() => this.vote(album)}></img>
+                                    <img alt="" src={heart} onClick={() => this.vote(album)}></img>
 
 
                                     <span id="numberOfVoted"> {album.voted} </span>
@@ -182,7 +176,7 @@ class UserPageAlbumsSection extends Component {
                         <div className="album-image">
                             <div className="adding-blur"></div>
                             <div className="adding-block">
-                                <img src={add}></img>
+                                <img alt="" src={add}></img>
                             </div>
 
                         </div>

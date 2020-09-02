@@ -6,10 +6,6 @@ import AlbumPageContent from '../components/AlbumPageContent'
 
 
 class Album extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     componentDidMount() {
         document.getElementsByClassName('main')[0].style.display = "block"
     }

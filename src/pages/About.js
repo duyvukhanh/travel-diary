@@ -5,9 +5,6 @@ import AboutPageItem from '../components/AboutPage'
 
 
 class About extends Component {
-    constructor(props) {
-        super(props)
-    }
     
     componentDidMount() {
         document.getElementsByClassName('main')[0].style.display = "block"

@@ -67,7 +67,7 @@ class LoginPage extends Component {
     }
 
     render() {
-        let isLoggedIn = Object.keys(this.props.userInfo).length == 0 ? false : true // Kiem tra obj rong
+        let isLoggedIn = Object.keys(this.props.userInfo).length === 0 ? false : true // Kiem tra obj rong
         let isEmailError = this.state.error.email 
         let isPasswordError = this.state.error.password 
         

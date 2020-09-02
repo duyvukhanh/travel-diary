@@ -6,9 +6,7 @@ import Nav from './Nav'
 import './MainLayout.css'
 
 class MainLayout extends Component {
-    constructor(props) {
-        super(props)
-    }
+  
     
     render() {
         return (

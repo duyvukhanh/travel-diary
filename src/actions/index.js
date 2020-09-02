@@ -1,6 +1,5 @@
 
 import { ACTION_TYPES } from '../config'
-import userInfo from '../reducers/userInfo'
 
 const changeEmail = (email) => {
     return {

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './Footer.css'
 import { VN_MAP } from '../config/map.js'
 import './VNMap.css'
-import commentSvg from '../icons/comment1.svg'
 import $ from 'jquery'
 import { connect } from 'react-redux'
 import { changeUserInfo } from '../actions'
@@ -46,7 +45,7 @@ class VNMap extends Component {
         if ( this.state.visited.includes(item.code) ) {
             let list = ``
             for (let album of this.state.albumList) {
-                if (item.code == album.place) {
+                if (item.code === album.place) {
                     list += `<li id='${album._id}'><a href='/album?id=${album._id}'>${album.albumName}</a></li>`
                 }
             }

@@ -10,6 +10,8 @@ authRouter.post('/sign-up', authHandlers.signUp)
 
 authRouter.get('/:id', authHandlers.findOne)
 
+authRouter.get('/', authHandlers.findMany)
+
 authRouter.put('/',upload.single('fileUploaded'), authHandlers.updateProfile)
 
 

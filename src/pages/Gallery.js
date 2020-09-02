@@ -8,9 +8,7 @@ import { connect } from 'react-redux'
 import { changeUserInfo } from '../actions'
 
 class Gallery extends Component {
-    constructor(props) {
-        super(props)
-    }
+    
 
     componentWillMount() {
         document.body.style.backgroundColor = "#fff"
@@ -21,7 +19,7 @@ class Gallery extends Component {
     }
     
     render() {
-        let isLoggedIn = Object.keys(this.props.userInfo).length == 0 ? false : true // Kiem tra obj rong
+        let isLoggedIn = Object.keys(this.props.userInfo).length === 0 ? false : true // Kiem tra obj rong
         if (!isLoggedIn) {
             return (
                 <Redirect to="/" />

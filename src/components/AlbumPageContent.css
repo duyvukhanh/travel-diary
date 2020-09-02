@@ -131,12 +131,60 @@
     column-gap:           0px;  
 }
 
-.content-section img {
-    /* Just in case there are inline attributes */
+.content-section .image-container {
     width: 100% !important;
     height: auto !important;
     border: 4px solid #fff;
     cursor: pointer;
+    position: relative;
+}
+
+.content-section .image-container .image-checkbox {
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    position: absolute;
+    opacity: 0.5;
+    display: none;
+}
+
+.content-section .image-container .image-checkbox.active {
+    display: block;
+}
+
+.content-section .image-container input {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    margin: 10px;
+    opacity: 0.5;
+    display: none;
+}
+
+.content-section .image-container input.active {
+    display: block;
+}
+
+.content-section .image-container:hover input {
+    opacity: 1;
+}
+
+.content-section .image-container input:checked {
+    background-color: #16a085;
+    border: 3px solid #fff;
+}
+
+
+.content-section img {
+    width: 100% !important;
+    height: auto !important;
   }
 
   .content-section video {
@@ -181,21 +229,88 @@
     height: 100px;
     display: flex;
     align-items: center;
-    opacity: 0.2;
-    transition: opacity 0.2s;
-    cursor: pointer;
-}
-
-.album-detail .action-btn:hover {
-    opacity: 1;
+    
 }
 
 .album-detail .action-btn img{
     height: 40px;
     width: 40px;
+    opacity: 0.2;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.album-detail .action-btn img:hover {
+    opacity: 1;
+}
+
+.album-detail .action-btn button{
+    height: 40px;
+    width: 100px;
+    opacity: 0.2;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.album-detail .action-btn button:hover {
+    opacity: 1;
 }
 
 #uploadImage {
     visibility: hidden;
     opacity: 0;
+}
+
+.delete-box {
+    margin-right: 30px;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    border: 2px solid #000;
+    opacity: 0.3;
+    transition: 0.5s;
+}
+
+.delete-box .delete-text {
+    /* border: 1px solid #000; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.delete-box .delete-icon {
+    height: 100%;
+    width: 0;
+    /* border: 1px solid #000; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9534f; 
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.delete-box .delete-icon img {
+    height: 20px;
+    opacity: 1;
+    width: 0;
+}
+
+.delete-box.active {
+    opacity: 1;
+}
+
+.delete-box.active .delete-icon {
+    width: 50px;
+}
+
+.delete-box.active .delete-icon img {
+    width: 20px;
 }

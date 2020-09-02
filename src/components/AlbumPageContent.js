@@ -119,6 +119,51 @@ class AlbumPageContent extends Component {
         }
     }
     
+    toggleActiveDelete() {
+        $(".delete-box").toggleClass("active")
+        $(".image-checkbox").toggleClass("active")
+        $(".image-container input").toggleClass("active")
+    }
+
+    clickCheckbox(image) {
+        $(`#checkbox-${image}`).click()
+    }
+
+    async deleteImages() {
+        let API = API_PATHS.GALLERY_UPDATE
+        let albumImages = [...this.state.album.images]
+        let checkedImages = []
+        for ( let i = 0; i < albumImages.length; i++ ) {
+            if ( $('#checkbox-' + albumImages[i]).is(":checked") ) {
+                checkedImages.push(albumImages[i])
+            }
+        }
+        let images = []
+        for (let image of albumImages) {
+            if ( !checkedImages.includes(image) ) {
+                images.push(image)
+            }
+        }
+        let reqBody = JSON.stringify({
+            _id: this.state.album._id,
+            images: [...images]
+        })
+        let rawResponse = await fetch(API, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: reqBody
+        })
+        let response = await rawResponse.json()
+        if (response.message) {
+            console.log(response)
+        } else {
+            window.location.reload();
+        }
+    }
+
     render() {  
         let album = this.state.album
         let loggedInUser = this.props.userInfo
@@ -126,42 +171,44 @@ class AlbumPageContent extends Component {
             <div className="album-page-content">
                 <div id="imageViewer">
                     <div className="close-btn" onClick={() => this.closeImage()}>
-                        <img src={xIcon}></img>
+                        <img alt="" src={xIcon}></img>
                     </div>
                     <div className="control-btn" id="prevImage">
-                        <img src={leftArrow}></img>
+                        <img alt="" src={leftArrow}></img>
                     </div>
                     <div className="image">
-                        {/* <img src={image1}></img> */}
+                        
                     </div>
                     <div className="control-btn" id="nextImage">
-                        <img src={rightArrow}></img>
+                        <img alt="" src={rightArrow}></img>
                     </div>
-                </div>
-                
+                </div>             
                 <div className="album-detail">
                     <input id="uploadImage" type="file" multiple onChange={(e) => {this.handleUploadImageToAnlbum(e)}}></input>
                     {
                         loggedInUser.gallery.includes(album._id) ? 
-                        <div className="action-btn" onClick={() => this.uploadImg()}>
-                            <img src={upload}></img>
+                        <div className="action-btn">
+                            <div className="delete-box">
+                                <div className="delete-icon" onClick={() => this.deleteImages()}>
+                                    <img alt="" src={require('../icons/delete.svg')}></img>
+                                </div>
+                                <div className="delete-text" onClick={() => this.toggleActiveDelete()}>Delete</div>
+                            </div>
+                            <img alt="" src={upload} onClick={() => this.uploadImg()}></img>
                         </div> : ""
                     }
                     
                 </div>
-                
-                
-
                 <div className="switch-btn">
                     <div id="pictureBtn" className="btn-item active" onClick={() => this.showPictures()}>
                         <div>
-                            <img src={pictureIcon}></img>
+                            <img alt="" src={pictureIcon}></img>
                         </div>
                         <div>Picture</div>
                     </div>
                     <div id="videoBtn" className="btn-item" onClick={() => this.showVideos()}>
                         <div>
-                            <img src={videoIcon}></img>
+                            <img alt="" src={videoIcon}></img>
                         </div>
                         <div>Video</div>
                     </div>
@@ -170,7 +217,13 @@ class AlbumPageContent extends Component {
                     <div className="picture-group">
                         {
                             album.images.map((image,i) => {
-                                return <img key={i} src={require(`../images/${image}`)} onClick={() => this.showImage(album.images,i)}></img>
+                                return <div key={i}>
+                                    <div className="image-container" >
+                                        <div className="image-checkbox" onClick={() => this.clickCheckbox(image)}></div>
+                                        <input type="checkbox" id={`checkbox-${image}`} value={image}></input>
+                                        <img alt="" src={require(`../images/${image}`)} onClick={() => this.showImage(album.images,i)}></img>
+                                    </div>
+                                </div>
                             })
                         }
                     </div>

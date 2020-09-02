@@ -3,10 +3,6 @@ import {Link} from 'react-router-dom'
 import './Header.css'
 
 class Footer extends Component {
-    constructor(props) {
-        super(props)
-    }
-    
     render() {
         let height = this.props.height || 600
         let style = {

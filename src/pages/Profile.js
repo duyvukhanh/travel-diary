@@ -4,9 +4,7 @@ import ProfileSection from '../components/ProfileSection'
 
 
 class Profile extends Component {
-    constructor(props) {
-        super(props)
-    }
+    
 
     componentWillMount() {
         document.body.style.backgroundColor = "#fff"

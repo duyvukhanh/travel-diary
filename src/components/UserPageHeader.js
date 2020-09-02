@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './UserPageHeader.css'
-import ava from '../images/duyava.jpg'
 import emailIcon from '../icons/email.png'
 import instagramIcon from '../icons/instagram.png'
 import { connect } from 'react-redux'
@@ -38,7 +37,7 @@ class UserPageHeader extends Component {
         return (
             <div className="user-page-header">
                 <div className="user-img">
-                    <img src={require(`../images/${loggedInUser.userImg}`)}></img>
+                    <img alt="" src={require(`../images/${loggedInUser.userImg}`)}></img>
                 </div>
                 <div className="user-name">{ loggedInUser.displayName }</div>
                 <div className="user-bio">
@@ -46,11 +45,11 @@ class UserPageHeader extends Component {
                 </div>
                 <div className="user-info">
                     <span className="user-email"> 
-                        <img src={emailIcon}></img>
+                        <img alt="" src={emailIcon}></img>
                         { loggedInUser.userFacebook }
                     </span>
                     <span className="user-ig">
-                        <img src={instagramIcon}></img>
+                        <img alt="" src={instagramIcon}></img>
                         { loggedInUser.userInstagram }
                     </span>
                 </div>

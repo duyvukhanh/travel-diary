@@ -4,9 +4,7 @@ import VNMap from '../components/VNMap'
 import PlaceInfo from '../components/PlaceInfo'
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-    }
+   
     
     render() {
         return (

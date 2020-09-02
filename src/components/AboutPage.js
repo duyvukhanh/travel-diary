@@ -5,9 +5,7 @@ import avaDung from '../images/dungava.jpg'
 
 
 class AboutPageItem extends Component {
-    constructor(props) {
-        super(props)
-    }
+  
     
     render() {
         return (
@@ -17,7 +15,7 @@ class AboutPageItem extends Component {
                 <div className="about-page-items">
                     <div className="about-page-item">
                         <div className="avatar">
-                            <img src={avaDuy}></img>
+                            <img alt="" src={avaDuy}></img>
                         </div>
                         <div className="name">Khánh Duy</div>
                         <div className="position">Frontend</div>
@@ -25,7 +23,7 @@ class AboutPageItem extends Component {
                     </div>
                     <div className="about-page-item">
                         <div className="avatar">
-                            <img src={avaDung}></img>
+                            <img alt="" src={avaDung}></img>
                         </div>
                         <div className="name">Nguyễn Dũng</div>
                         <div className="position">Backend</div>

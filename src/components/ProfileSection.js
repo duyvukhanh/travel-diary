@@ -73,7 +73,7 @@ class ProfileSection extends Component {
             bio,
         }
         for (const [key, value] of Object.entries(userToUpdate)) {
-            if ( value != '' ) {
+            if ( value !== '' ) {
                 formData.append(key, value)
             }
         }
@@ -106,16 +106,16 @@ class ProfileSection extends Component {
                     <div className="profile-image">
                         <div className="text">Profile Image</div>
                         {
-                            (loggedInUser.userImg != "default" || !loggedInUser.userImg) ? (
+                            (loggedInUser.userImg !== "default" || !loggedInUser.userImg) ? (
                                 <div className="user-img" onClick={() => this.uploadImg()}>
-                                    <img id="userImage" src={require(`../images/${loggedInUser.userImg}`)}></img>
+                                    <img alt="" id="userImage" src={require(`../images/${loggedInUser.userImg}`)}></img>
                                 </div>
                             ) : (
                                     <div className="adding-btn"
                                         onClick={() => this.uploadImg()}
                                         onMouseOver={() => this.upOpacity()}
                                         onMouseLeave={() => this.downOpacity()}>
-                                        <img src={plus} id='addingIcon'></img>
+                                        <img alt="" src={plus} id='addingIcon'></img>
                                     </div>
                                 )
                         }

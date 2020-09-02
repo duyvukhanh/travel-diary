@@ -112,6 +112,45 @@ const handlers = {
             next(err)
         }
     },
+    async findMany(req, res, next) {
+        try {
+          let {
+            pageIndex,
+            pageSize,
+            sortBy,
+            sort, // asc | desc
+            search = '',
+            fields = '',
+            owner
+          } = req.query
+    
+          pageSize = parseInt(pageSize) || 20
+          pageIndex = parseInt(pageIndex) || 1
+    
+          let limit = pageSize
+          let skip = (pageIndex - 1) * pageSize
+          let sortInfo = `${sort == 'desc' ? '-' : ''}${sortBy}`
+          // fields = 'title, description' > fieldArr = ['title', 'description']
+          let fieldArr = fields.split(',').map(field => field.trim())
+          let conditions = {}
+          if (search) {
+            conditions.displayName = new RegExp(search, 'i')
+          }
+          if (owner) {
+            conditions.owner = owner
+          }
+    
+          let items = await userInfoModel
+            .find(conditions, fieldArr)
+            .skip(skip)
+            .limit(limit)
+            .sort(sortInfo)
+    
+          res.json(items)
+        } catch (err) {
+          next(err)
+        }
+      },
 }
 
 module.exports = handlers

@@ -4,9 +4,9 @@ import './Nav.css'
 import menu from '../icons/menu.svg'
 import search_black from '../icons/search.svg'
 import search_white from '../icons/search_white.svg'
-
 import { connect } from 'react-redux'
 import {changeUserInfo} from '../actions'
+import {API_PATHS} from '../config'
 
 
 class Nav extends Component {
@@ -17,6 +17,8 @@ class Nav extends Component {
             backgroundColor : "",
             height : "100px",
             textColor : "#fff",
+            search: [],
+            displaySuggestion: false,
         }
     }
 
@@ -33,7 +35,7 @@ class Nav extends Component {
     }
 
     componentWillMount() {
-        if (this.props.bg == "white") {
+        if (this.props.bg === "white") {
             this.setState({
                 backgroundColor : "#fff",
                 height : "100px",
@@ -50,7 +52,7 @@ class Nav extends Component {
             let height = scrollY > 0 ? "70px" : ""
             let textColor = scrollY > 0 ? "#343a40" : "#fff"
             let borderBottom = scrollY > 0 ? "1px solid #bdbdbd" : "none"
-            if (this.props.bg != "white") {
+            if (this.props.bg !== "white") {
                 this.setState({
                     backgroundColor,
                     textColor,
@@ -61,6 +63,32 @@ class Nav extends Component {
                 height,
             })
         }
+    }
+
+    async handleSearch() {
+        let searchInput = document.getElementById('searchInput')
+        let value = searchInput.value
+        let API = API_PATHS.GET_MANY_USER
+
+        if ( value ) {
+            API = API + `?search=${value}`
+            let rawResponse = await fetch(API, {
+                method: 'GET'
+            })
+            let response = await rawResponse.json()
+            if (response.message) {
+                console.log("Failed")
+            } else {
+                this.setState({search:response})
+            }
+            this.setState({displaySuggestion:true})
+        } else {
+            this.setState({displaySuggestion:false})
+        }
+    }
+
+    toUserPage(userId) {
+        window.location.href = `http://localhost:3000/gallery?userId=${userId}`
     }
 
     render() {
@@ -80,7 +108,8 @@ class Nav extends Component {
         let textColorStyle = {
             color : this.state.textColor
         }
-        let isLoggedIn = Object.keys(this.props.userInfo).length == 0 ? false : true
+        let isLoggedIn = Object.keys(this.props.userInfo).length === 0 ? false : true
+        let displaySuggestion = this.state.displaySuggestion ? "suggestion active" : "suggestion"
         return (
             <nav className="nav" style={navBackgroundStyle}>
                 <div className="nav-home-item" >
@@ -106,11 +135,23 @@ class Nav extends Component {
 
                     <div className="search-box">
                         {/* <Link to="/#" className="nav-item" style={textColorStyle}>Search</Link> */}
-                        <img src={search_white}></img>
-                        <input type="text"></input>
-                        <div className="search-btn">
-                            <img src={search_black}></img>
+                        <div className="search">
+                            <img alt="" src={search_white}></img>
+                            <input type="text" id="searchInput" onInput={() => this.handleSearch()}></input>
+                            <div className="search-btn">
+                                <img alt="" src={search_black}></img>
+                            </div>
                         </div>
+                        <div className={displaySuggestion}>
+                            <div></div>
+                            {
+                                this.state.search.map((user, i) => {
+                                    return <div className="suggestion-item" key={i} onClick={() => this.toUserPage(user._id)}>{user.displayName}</div>
+                                })
+                            }
+                            <div></div>
+                        </div>
+                        
                     </div>
                 </div>
                 {
@@ -126,7 +167,7 @@ class Nav extends Component {
                     </div>
                 }
                 <div className="nav-group-items-sm" onClick={() => this.showMenu()}>
-                    <img src={menu}></img>
+                    <img alt="" src={menu}></img>
                 </div>
                 <div className="nav-group-items-sm-extend" style={style}>
                     <Link to="/" className="nav-item-extend">Home</Link>

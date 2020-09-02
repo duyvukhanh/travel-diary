@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './AlbumPageHeader.css'
-import ava from '../images/duyava.jpg'
 import $ from 'jquery'
 import { connect } from 'react-redux'
 import { changeUserInfo } from '../actions'
@@ -66,7 +65,7 @@ class AlbumPageHeader extends Component {
                 <div className="owner-block">
                     <div className="album-owner-img">
                         {
-                            this.state.thisUser.userImg.length ? <img src={require(`../images/${this.state.thisUser.userImg}`)}></img> : <img src={require(`../images/default.jpg`)}></img>
+                            this.state.thisUser.userImg.length ? <img alt="" src={require(`../images/${this.state.thisUser.userImg}`)}></img> : <img alt="" src={require(`../images/default.jpg`)}></img>
                         }
                         
                     </div>

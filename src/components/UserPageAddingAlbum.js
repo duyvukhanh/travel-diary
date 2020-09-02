@@ -6,10 +6,6 @@ import { changeUserInfo } from '../actions'
 import { API_PATHS } from '../config'
 
 class AddingAlbum extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     cancelAddAlbumForm(e) {
         e.preventDefault()
         document.getElementsByClassName('adding-album-block')[0].style.opacity = 0
@@ -19,13 +15,13 @@ class AddingAlbum extends Component {
     ordinal_suffix_of(i) {
         var j = i % 10,
             k = i % 100;
-        if (j == 1 && k != 11) {
+        if (j === 1 && k !== 11) {
             return i + "st";
         }
-        if (j == 2 && k != 12) {
+        if (j === 2 && k !== 12) {
             return i + "nd";
         }
-        if (j == 3 && k != 13) {
+        if (j === 3 && k !== 13) {
             return i + "rd";
         }
         return i + "th";
