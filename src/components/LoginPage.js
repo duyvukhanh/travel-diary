@@ -62,7 +62,7 @@ class LoginPage extends Component {
             this.props.changeUserInfo(user)
             localStorage.setItem('currentUser', JSON.stringify(user))
         } else {
-            console.log("ahihi")
+            document.getElementsByClassName('login-error')[0].style.display = "flex"
         }
     }
 
@@ -88,6 +88,9 @@ class LoginPage extends Component {
                             <div className={emailErrClassName}>{this.state.error.email}</div>
                             <input type="password" placeholder="Password" name="password" onInput={() => this.validateLoginForm()}></input>
                             <div className={passwordErrClassName}>{this.state.error.password}</div>
+                            <div className="login-error">
+                                Email or password invalid !!
+                            </div>
                             <button className="login-btn" onClick={(e) => this.handleLogin(e)}>Login</button>
                         </form>
                         <div className="forgot-pw">

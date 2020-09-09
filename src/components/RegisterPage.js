@@ -73,7 +73,7 @@ class RegisterPage extends Component {
             console.log(user)
             window.location.href = '/login'
         } else {
-            console.log("ahihi")
+            document.getElementsByClassName('register-error')[0].style.display = "flex"
         }
     }
     
@@ -106,6 +106,10 @@ class RegisterPage extends Component {
 
                             <input type="text" placeholder="Display Name" name="displayName" onInput={() => this.validateRegisterForm()}></input>
                             <div className={displayNameErrClassName}>{this.state.error.displayName}</div>
+
+                            <div className="register-error">
+                                Register Failed !!
+                            </div>
 
                             <button className="register-btn" onClick={(e) => this.handleRegister(e)}>Register</button>
                         </form>

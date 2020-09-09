@@ -9,7 +9,7 @@ const path = require('path')
 const cors = require('cors')
 
 
-// const staticFolderPath = path.join(__dirname, 'public')
+const staticFolderPath = path.join(__dirname, '../src')
 
 const app = express()
 const port = 8080
@@ -17,7 +17,7 @@ app.use(cors())
 
 app.use(bodyParser.json())
 
-// app.use('/', express.static(staticFolderPath))
+app.use('/', express.static(staticFolderPath))
 
 app.use(router)
 

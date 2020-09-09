@@ -167,6 +167,7 @@ class AlbumPageContent extends Component {
     render() {  
         let album = this.state.album
         let loggedInUser = this.props.userInfo
+        let loggedInUserGallery = (loggedInUser.gallery[0].split(','))
         return (
             <div className="album-page-content">
                 <div id="imageViewer">
@@ -186,7 +187,7 @@ class AlbumPageContent extends Component {
                 <div className="album-detail">
                     <input id="uploadImage" type="file" multiple onChange={(e) => {this.handleUploadImageToAnlbum(e)}}></input>
                     {
-                        loggedInUser.gallery.includes(album._id) ? 
+                        loggedInUserGallery.includes(album._id) ? 
                         <div className="action-btn">
                             <div className="delete-box">
                                 <div className="delete-icon" onClick={() => this.deleteImages()}>
