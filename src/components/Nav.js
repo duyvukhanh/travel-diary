@@ -19,6 +19,7 @@ class Nav extends Component {
             textColor : "#fff",
             search: [],
             displaySuggestion: false,
+            searchIconSrc: search_white,
         }
     }
 
@@ -52,6 +53,7 @@ class Nav extends Component {
             let height = scrollY > 0 ? "70px" : ""
             let textColor = scrollY > 0 ? "#343a40" : "#fff"
             let borderBottom = scrollY > 0 ? "1px solid #bdbdbd" : "none"
+            let searchIconSrc = scrollY > 0 ? search_black : search_white
             if (this.props.bg !== "white") {
                 this.setState({
                     backgroundColor,
@@ -61,6 +63,7 @@ class Nav extends Component {
             this.setState({
                 borderBottom,
                 height,
+                searchIconSrc,
             })
         }
     }
@@ -116,27 +119,27 @@ class Nav extends Component {
                     <Link to="/" className="nav-home-item" style={textColorStyle}>Travel Diary</Link>
                 </div>
                 <div className="nav-group-items">
-                    <Link to="/" className="nav-item nav-active" style={textColorStyle}>Home</Link>
+                    <Link to="/" className={this.props.currentNavState === 1 ? "nav-item nav-active" : "nav-item"} style={textColorStyle}>Home</Link>
                     {
                         isLoggedIn
                         ? 
-                            <Link to="/gallery" className="nav-item" style={textColorStyle}>Gallery</Link>
+                            <Link to="/gallery" className={this.props.currentNavState === 2 ? "nav-item nav-active" : "nav-item"} style={textColorStyle}>Gallery</Link>
                         : ""
                     }
                     {
                         isLoggedIn
                         ? 
-                            <Link to="/profile" className="nav-item" style={textColorStyle}>Profile</Link>
+                            <Link to="/profile" className={this.props.currentNavState === 3 ? "nav-item nav-active" : "nav-item"} style={textColorStyle}>Profile</Link>
                         : ""
                     }
                             
                     
-                    <Link to="/about" className="nav-item" style={textColorStyle}>About</Link>
+                    <Link to="/about" className={this.props.currentNavState === 4 ? "nav-item nav-active" : "nav-item"} style={textColorStyle}>About</Link>
 
                     <div className="search-box">
                         {/* <Link to="/#" className="nav-item" style={textColorStyle}>Search</Link> */}
                         <div className="search">
-                            <img alt="" src={search_white}></img>
+                            <img alt="" id="searchIcon" src={this.state.searchIconSrc}></img>
                             <input type="text" id="searchInput" onInput={() => this.handleSearch()}></input>
                             <div className="search-btn">
                                 <img alt="" src={search_black}></img>
@@ -184,8 +187,8 @@ class Nav extends Component {
 }
 
 const mapStateToProps = (state) => {
-    let { userInfo } = state
-    return { userInfo }
+    let { userInfo, currentNavState } = state
+    return { userInfo,currentNavState }
 }
 
 const mapDispatchToProps = (dispatch) => {

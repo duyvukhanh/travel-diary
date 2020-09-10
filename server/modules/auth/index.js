@@ -57,7 +57,7 @@ const handlers = {
                 email,
                 password,
                 displayName,
-                userImg: 'default',
+                userImg: 'default.jpg',
                 voted: 0,
                 userFacebook: "",
                 userInstagram: "",

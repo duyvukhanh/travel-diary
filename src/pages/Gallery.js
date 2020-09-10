@@ -5,10 +5,13 @@ import UserPageAlbumsSection from '../components/UserPageAlbumsSection'
 import AddingAlbum from '../components/UserPageAddingAlbum'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { changeUserInfo } from '../actions'
+import { changeUserInfo,changeNavState } from '../actions'
 
 class Gallery extends Component {
-    
+    constructor(props) {
+        super(props)
+        this.props.changeNavState(2)
+    }
 
     componentWillMount() {
         document.body.style.backgroundColor = "#fff"
@@ -38,13 +41,14 @@ class Gallery extends Component {
 
 
 const mapStateToProps = (state) => {
-    let { userInfo } = state
-    return { userInfo }
+    let { userInfo, currentNavState } = state
+    return { userInfo,currentNavState }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeUserInfo: (userInfo) => dispatch(changeUserInfo(userInfo))
+        changeUserInfo: (userInfo) => dispatch(changeUserInfo(userInfo)),
+        changeNavState: (navState) => dispatch(changeNavState(navState))
     }
 }
 

@@ -2,6 +2,7 @@ const ACTION_TYPES = {
     UI_CHANGE_EMAIL: 'UI_CHANGE_EMAIL',
     UI_CHANGE_FULLNAME: 'UI_CHANGE_FULLNAME',
     CHANGE_UI: 'CHANGE_UI',
+    NAV_CHANGE_STATE: 'NAV_CHANGE_STATE',
 }
 
 const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8080'

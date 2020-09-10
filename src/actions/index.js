@@ -22,8 +22,18 @@ const changeUserInfo = (userInfo) => {
     }
 }
 
+const changeNavState = (navState) => {
+    return {
+        type: ACTION_TYPES.NAV_CHANGE_STATE,
+        navState
+    }
+}
+
+
+
 export {
     changeEmail,
     changeFullname,
     changeUserInfo,
+    changeNavState,
 }
