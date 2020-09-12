@@ -13,7 +13,7 @@ const clientPaths = ['/', '/about', '/album', '/gallery' , '/profile','/login','
 const STATIC_PATH = path.resolve(__dirname, '../build')
 
 const app = express()
-const port = 8080
+const port = process.env.PORT || 8080;
 app.use(cors())
 
 app.use(bodyParser.json())
