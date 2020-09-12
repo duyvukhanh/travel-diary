@@ -8,17 +8,17 @@ const ACTION_TYPES = {
 const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8080'
 
 const API_PATHS = {
-    LOGIN: 'http://localhost:8080/api/auth/login/',
-    REGISTER: 'http://localhost:8080/api/auth/sign-up/',
-    GET_USER: 'http://localhost:8080/api/auth/',
-    GET_MANY_USER: 'http://localhost:8080/api/auth',
+    LOGIN: 'https://travel-diaryz.herokuapp.com/api/auth/login/',
+    REGISTER: 'https://travel-diaryz.herokuapp.com/api/auth/sign-up/',
+    GET_USER: 'https://travel-diaryz.herokuapp.com/api/auth/',
+    GET_MANY_USER: 'https://travel-diaryz.herokuapp.com/api/auth',
 
-    UPDATE_USER: 'http://localhost:8080/api/auth/',
-    GALLERY_GET_MANY: 'http://localhost:8080/api/gallery',
-    GALLERY_GET_ONE: 'http://localhost:8080/api/gallery/',
-    GALLERY_CREATE: 'http://localhost:8080/api/gallery/',
-    GALLERY_UPDATE: 'http://localhost:8080/api/gallery/',
-    GALLERY_DELETE: 'http://localhost:8080/api/gallery/',
+    UPDATE_USER: 'https://travel-diaryz.herokuapp.com/api/auth/',
+    GALLERY_GET_MANY: 'https://travel-diaryz.herokuapp.com/api/gallery',
+    GALLERY_GET_ONE: 'https://travel-diaryz.herokuapp.com/api/gallery/',
+    GALLERY_CREATE: 'https://travel-diaryz.herokuapp.com/api/gallery/',
+    GALLERY_UPDATE: 'https://travel-diaryz.herokuapp.com/api/gallery/',
+    GALLERY_DELETE: 'https://travel-diaryz.herokuapp.com/api/gallery/',
 
 }
 
