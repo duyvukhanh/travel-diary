@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './UserPageAlbumsSection.css'
 import add from '../icons/plus.png'
+
 import { connect } from 'react-redux'
 import { changeUserInfo } from '../actions'
 import { API_PATHS } from '../config'
@@ -154,11 +155,11 @@ class UserPageAlbumsSection extends Component {
                                     }
                                 </div>
                                 <div className="voted">
+                                    <img alt="" src={require('../icons/deleteBlack.svg')} onClick={() => this.vote(album)}></img>
                                     <img alt="" src={heart} onClick={() => this.vote(album)}></img>
-
-
                                     <span id="numberOfVoted"> {album.voted} </span>
                                 </div>
+
                                 <div className="album-title" onClick={(e) => this.toAlbumPage(e,album)}>
                                     {album.albumName}
                                 </div>

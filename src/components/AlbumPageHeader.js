@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { changeUserInfo } from '../actions'
 import { API_PATHS } from '../config'
 
+
 class AlbumPageHeader extends Component {
     constructor(props) {
         super(props)
@@ -40,6 +41,10 @@ class AlbumPageHeader extends Component {
         let thisUser = await rawResponse1.json()
         this.setState({thisUser})
 
+        // backgroundImage 
+        let backgroundImage = this.state.album.images.length === 0 ? "" : require(`../images/${this.state.album.images[0]}`)
+        console.log(backgroundImage)
+        document.getElementById('backgroundImage').style.backgroundImage = `url(${backgroundImage})`
     }
 
     toAlbumContent() {
@@ -49,7 +54,7 @@ class AlbumPageHeader extends Component {
     
     render() {
         return (
-            <div className="album-page-header">
+            <div className="album-page-header" id="backgroundImage">
                 <div className="fade"></div>
                 <div className="album-block">
                     <div className="album-name">

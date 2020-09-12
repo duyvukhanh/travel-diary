@@ -167,7 +167,7 @@ class AlbumPageContent extends Component {
     render() {  
         let album = this.state.album
         let loggedInUser = this.props.userInfo
-        let loggedInUserGallery = (loggedInUser.gallery[0].split(','))
+        let loggedInUserGallery = (loggedInUser.gallery)
         return (
             <div className="album-page-content">
                 <div id="imageViewer">

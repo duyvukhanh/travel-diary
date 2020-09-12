@@ -61,7 +61,6 @@ class AddingAlbum extends Component {
         
         // add album to user
         let album = await rawResponse.json()
-        console.log(album)
         let playloadToUpdate = JSON.stringify({
             _id : this.props.userInfo._id,
             gallery : [...this.props.userInfo.gallery, album._id]
@@ -79,10 +78,10 @@ class AddingAlbum extends Component {
         let userUpdated = await rawResponseUser.json()
         localStorage.setItem('currentUser', JSON.stringify(userUpdated))
         this.props.changeUserInfo(userUpdated)
+        window.location.reload()
     }
 
     render() {
-
         return (
             <div className="adding-album-block">
                 <div className="blurr"></div>
