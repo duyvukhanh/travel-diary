@@ -116,3 +116,11 @@
     height: 60px !important;
     width: 60px !important;
 }
+
+.delete-album {
+    display: none;
+}
+
+.user-album:hover .delete-album {
+    display: block;
+}

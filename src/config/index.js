@@ -18,6 +18,8 @@ const API_PATHS = {
     GALLERY_GET_ONE: 'http://localhost:8080/api/gallery/',
     GALLERY_CREATE: 'http://localhost:8080/api/gallery/',
     GALLERY_UPDATE: 'http://localhost:8080/api/gallery/',
+    GALLERY_DELETE: 'http://localhost:8080/api/gallery/',
+
 }
 
 export {

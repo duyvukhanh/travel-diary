@@ -19,6 +19,50 @@ class UserPageAlbumsSection extends Component {
         }
     }
 
+    async deleteAlbum(album) {
+        let API = API_PATHS.GALLERY_DELETE + `${album._id}`
+        let rawResponse = await fetch(API, {
+            method: 'DELETE',
+        })
+        let response = await rawResponse.json()
+        if (response.message) {
+            console.log("Gallery delete Failed")
+        } else {
+            console.log(response)
+        }
+
+        let loggedInUser = this.props.userInfo
+        let galleryToUpdate = loggedInUser.gallery
+        for (let i = 0; i < galleryToUpdate.length; i++) {
+            if (galleryToUpdate[i] === album._id) {
+                galleryToUpdate.splice(i, 1)
+                break
+            }
+        }
+        let userToUpdate = {
+            ...loggedInUser,
+            gallery: [...galleryToUpdate]
+        }
+        let API1 = API_PATHS.UPDATE_USER
+        let rawResponse1 = await fetch(API1, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userToUpdate)
+        })
+        let response1 = await rawResponse1.json()
+        if (response1.message) {
+            console.log("User update Failed")
+        } else {
+            console.log(response1)
+            localStorage.setItem('currentUser', JSON.stringify(response1))
+            this.props.changeUserInfo(response1)
+        }
+        window.location.reload()
+    }
+
     async vote(album) {
         let albumList = this.state.albumList
         let albumIndex = albumList.indexOf(album)
@@ -155,7 +199,7 @@ class UserPageAlbumsSection extends Component {
                                     }
                                 </div>
                                 <div className="voted">
-                                    <img alt="" src={require('../icons/deleteBlack.svg')} onClick={() => this.vote(album)}></img>
+                                    <img alt="" className="delete-album" src={require('../icons/deleteBlack.svg')} onClick={() => this.deleteAlbum(album)}></img>
                                     <img alt="" src={heart} onClick={() => this.vote(album)}></img>
                                     <span id="numberOfVoted"> {album.voted} </span>
                                 </div>
