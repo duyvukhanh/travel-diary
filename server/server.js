@@ -8,9 +8,10 @@ const router = require('./router')
 const path = require('path')
 const cors = require('cors')
 const clientPaths = ['/', '/about', '/album', '/gallery' , '/profile','/login','/register']
-
+const imagesPath = '/images' 
 
 const STATIC_PATH = path.resolve(__dirname, '../build')
+const IMAGES_PATH = path.resolve(__dirname, './images')
 
 const app = express()
 const port = process.env.PORT || 8080;
@@ -20,6 +21,7 @@ app.use(bodyParser.json())
 
 
 clientPaths.map(clientPath => app.use(clientPath, express.static(STATIC_PATH)))
+app.use(imagesPath, express.static(IMAGES_PATH))
 app.use(router)
 
 app.use((err, req, res, next) => {

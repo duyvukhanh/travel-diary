@@ -36,7 +36,7 @@ class AlbumPageContent extends Component {
         }
         document.getElementById('imageViewer').style.opacity = 1
         document.getElementById('imageViewer').style.visibility = "visible"
-        let img = require(`../images/${images[index]}`)
+        let img = `${API_PATHS.GET_IMAGE}${images[index]}`
         document.getElementsByClassName('image')[0].innerHTML = ` <img src='${img}'></img> `
 
         $('#nextImage').on("click",() => {
@@ -117,6 +117,7 @@ class AlbumPageContent extends Component {
         } else {
             console.log(response)
         }
+        window.location.reload()
     }
     
     toggleActiveDelete() {
@@ -134,7 +135,7 @@ class AlbumPageContent extends Component {
         let albumImages = [...this.state.album.images]
         let checkedImages = []
         for ( let i = 0; i < albumImages.length; i++ ) {
-            if ( $('#checkbox-' + albumImages[i]).is(":checked") ) {
+            if ( $('#checkbox-' + albumImages[i].split('.')[0]).is(":checked") ) {
                 checkedImages.push(albumImages[i])
             }
         }
@@ -168,6 +169,7 @@ class AlbumPageContent extends Component {
         let album = this.state.album
         let loggedInUser = this.props.userInfo
         let loggedInUserGallery = (loggedInUser.gallery)
+      
         return (
             <div className="album-page-content">
                 <div id="imageViewer">
@@ -220,20 +222,20 @@ class AlbumPageContent extends Component {
                             album.images.map((image,i) => {
                                 return <div key={i}>
                                     <div className="image-container" >
-                                        <div className="image-checkbox" onClick={() => this.clickCheckbox(image)}></div>
-                                        <input type="checkbox" id={`checkbox-${image}`} value={image}></input>
-                                        <img alt="" src={require(`../images/${image}`)} onClick={() => this.showImage(album.images,i)}></img>
+                                        <div className="image-checkbox" onClick={() => this.clickCheckbox(image.split('.')[0])}></div>
+                                        <input type="checkbox" id={`checkbox-${image.split('.')[0]}`} value={image}></input>
+                                        <img alt="" src={`${API_PATHS.GET_IMAGE}${image}`} onClick={() => this.showImage(album.images,i)}></img>
                                     </div>
                                 </div>
                             })
                         }
                     </div>
                     <div className="video-group">
-                        {
+                        {/* {
                             album.videos.map((video,i) => {
                                 return <video key={i} src={require(`../videos/${video}.mp4`)} controls></video>
                             })
-                        }
+                        } */}
                       
                     </div>
                 </section>

@@ -93,7 +93,7 @@ class ProfileSection extends Component {
             localStorage.setItem('currentUser', JSON.stringify(response))
             this.props.changeUserInfo(response)
         }
-
+        window.location.reload()
 
     }
 
@@ -108,7 +108,7 @@ class ProfileSection extends Component {
                         {
                             (loggedInUser.userImg !== "default" || !loggedInUser.userImg) ? (
                                 <div className="user-img" onClick={() => this.uploadImg()}>
-                                    <img alt="" id="userImage" src={require(`../images/${loggedInUser.userImg}`)}></img>
+                                    <img alt="" id="userImage" src={`${API_PATHS.GET_IMAGE}${loggedInUser.userImg}`}></img>
                                 </div>
                             ) : (
                                     <div className="adding-btn"

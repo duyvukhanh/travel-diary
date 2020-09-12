@@ -195,7 +195,7 @@ class UserPageAlbumsSection extends Component {
                                 <div className="album-image">
                                     <div className="img-blur" onClick={(e) => this.toAlbumPage(e,album)}></div>
                                     {
-                                        album.images[0] ? <img alt="" src={require(`../images/${album.images[0]}`)}></img> : <img alt="" src={require('../images/default.jpg')}></img>
+                                        album.images[0] ? <img alt="" src={`${API_PATHS.GET_IMAGE}${album.images[0]}`}></img> : <img alt="" src={`${API_PATHS.GET_IMAGE}default.jpg`}></img>
                                     }
                                 </div>
                                 <div className="voted">

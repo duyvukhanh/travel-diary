@@ -34,10 +34,11 @@ class UserPageHeader extends Component {
     
     render() {
         let loggedInUser = this.state.thisUser
+        console.log(`${API_PATHS.GET_IMAGE}${loggedInUser.userImg}`)
         return (
             <div className="user-page-header">
                 <div className="user-img">
-                    <img alt="" src={require(`../images/${loggedInUser.userImg}`)}></img>
+                    <img alt="" src={`${API_PATHS.GET_IMAGE}${loggedInUser.userImg}`}></img>
                 </div>
                 <div className="user-name">{ loggedInUser.displayName }</div>
                 <div className="user-bio">
