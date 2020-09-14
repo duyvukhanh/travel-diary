@@ -91,7 +91,7 @@ class Nav extends Component {
     }
 
     toUserPage(userId) {
-        window.location.href = `http://localhost:3000/gallery?userId=${userId}`
+        window.location.href = `https://travel-diaryz.herokuapp.com/gallery?userId=${userId}`
     }
 
     render() {
