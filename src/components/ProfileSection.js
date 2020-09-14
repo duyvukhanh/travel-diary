@@ -66,7 +66,7 @@ class ProfileSection extends Component {
         let userInstagram = profileForm.userInstagram.value
         let bio = profileForm.bio.value
         let userToUpdate = {
-            ...user,
+            _id : user._id,
             displayName,
             userFacebook,
             userInstagram,

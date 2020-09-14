@@ -25,13 +25,11 @@ const gallerySchema = new Schema({
     images: [
         {
             type: String,
-            unique: true,
         },
     ],
     videos: [
         {
             type: String,
-            unique: true,
         },
     ]
 })

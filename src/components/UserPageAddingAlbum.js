@@ -42,6 +42,8 @@ class AddingAlbum extends Component {
         let month = monthNames[date.getMonth()]
         let year = date.getFullYear()
         date = `${month} ${day} ${year}`
+
+
         let API = API_PATHS.GALLERY_CREATE
         let reqBody = JSON.stringify({
             albumName,
@@ -50,6 +52,7 @@ class AddingAlbum extends Component {
             owner: this.props.userInfo._id,
             voted: 0,
         })
+        console.log(reqBody)
         let rawResponse = await fetch(API, {
             method: 'POST',
             headers: {
@@ -78,7 +81,7 @@ class AddingAlbum extends Component {
         let userUpdated = await rawResponseUser.json()
         localStorage.setItem('currentUser', JSON.stringify(userUpdated))
         this.props.changeUserInfo(userUpdated)
-        window.location.reload()
+        // window.location.reload()
     }
 
     render() {
